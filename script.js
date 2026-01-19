@@ -27,7 +27,7 @@ function initializeProgressMarkers() {
         elements.posts.forEach(post => {
             const marker = document.createElement('div');
             marker.className = 'progress-marker';
-            const offset = post.offsetTop;
+            const offset = post.offsetTop + (post.offsetHeight / 2);
             const percent = (offset / document.body.scrollHeight) * 100;
             marker.style.top = `${percent}%`;
             elements.progressBar.appendChild(marker);
