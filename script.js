@@ -69,12 +69,25 @@ function initializeProgressTracking() {
     window.addEventListener('mouseup', () => state.isDragging = false);
 }
 
-// Update subtitle based on current milestone
-function updateMilestoneSubtitle(post) {
-    const customSubtitle = post.getAttribute('data-subtitle');
-    if (customSubtitle && customSubtitle !== state.currentMilestone) {
-        state.currentMilestone = customSubtitle;
-        elements.subtitle.textContent = customSubtitle;
+// Format timer text based on elapsed time
+function formatTimerText(elapsed) {
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+
+    if (minutes > 0) {
+        return `You've been scrolling for ${minutes}m ${seconds}s... that's time you'll never get back`;
+    } else {
+        return `You've been scrolling for ${seconds} seconds...`;
+    }
+}
+
+// Update subtitle display
+function updateSubtitleDisplay() {
+    if (state.currentMilestone) {
+        elements.subtitle.textContent = state.currentMilestone;
+    } else {
+        const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+        elements.subtitle.textContent = formatTimerText(elapsed);
     }
 }
 
@@ -88,8 +101,12 @@ function initializeMilestoneTracking() {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                updateMilestoneSubtitle(entry.target);
+            const customSubtitle = entry.target.getAttribute('data-subtitle');
+
+            if (entry.isIntersecting && customSubtitle) {
+                state.currentMilestone = customSubtitle;
+            } else if (!entry.isIntersecting && customSubtitle === state.currentMilestone) {
+                state.currentMilestone = null;
             }
         });
     }, observerOptions);
@@ -99,19 +116,7 @@ function initializeMilestoneTracking() {
 
 // Initialize timer display
 function initializeTimer() {
-    setInterval(() => {
-        if (state.currentMilestone) return;
-
-        const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
-        const minutes = Math.floor(elapsed / 60);
-        const seconds = elapsed % 60;
-
-        if (minutes > 0) {
-            elements.subtitle.textContent = `You've been scrolling for ${minutes}m ${seconds}s... that's time you'll never get back`;
-        } else {
-            elements.subtitle.textContent = `You've been scrolling for ${seconds} seconds...`;
-        }
-    }, 1000);
+    setInterval(updateSubtitleDisplay, 1000);
 }
 
 // Initialize all components
