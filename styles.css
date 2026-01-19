@@ -93,6 +93,23 @@ body {
     font-size: 18px;
     color: #aaa;
     line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 32px;
+    font-size: 20px;
+    opacity: 0.4;
+}
+
+.action {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.action:hover {
+    opacity: 1;
 }
 
 .footer {
