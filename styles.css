@@ -74,25 +74,73 @@ body {
     background: #111;
     border: 1px solid #333;
     border-radius: 12px;
-    padding: 40px;
+    padding: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.timestamp {
+    font-size: 13px;
+    color: #666;
+}
+
+.post-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex: 1;
+    padding: 20px 0;
 }
 
-.post h2 {
+.post-content h2 {
     font-size: 48px;
     margin-bottom: 15px;
     color: #ff4444;
 }
 
-.post p {
+.post-content p {
     font-size: 18px;
     color: #aaa;
     line-height: 1.6;
+}
+
+.engagement {
+    display: flex;
+    gap: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #222;
+    font-size: 13px;
+    color: #666;
 }
 
 .footer {
