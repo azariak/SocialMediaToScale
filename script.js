@@ -21,14 +21,14 @@ function initializeCardHeights() {
     });
 }
 
-// Position floating text elements based on their data-position attribute
+// Position floating text and mini-cards based on their data-position attribute
 function initializeFloatingText() {
-    document.querySelectorAll('.floating-text').forEach(text => {
-        const position = parseFloat(text.getAttribute('data-position'));
-        const post = text.closest('.post');
+    document.querySelectorAll('.floating-text, .mini-card').forEach(element => {
+        const position = parseFloat(element.getAttribute('data-position'));
+        const post = element.closest('.post');
         if (post && !isNaN(position)) {
             const cardHeight = post.offsetHeight;
-            text.style.top = `${position * cardHeight}px`;
+            element.style.top = `${position * cardHeight}px`;
         }
     });
 }
