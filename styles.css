@@ -85,10 +85,18 @@ body {
 
 .post-header-content {
     margin-bottom: 40px;
+    position: sticky;
+    top: 80px;
+    padding: 20px 0 10px 0;
+    z-index: 10;
+}
+
+.post:first-child {
+    padding-top: 20px;
 }
 
 .post:first-child .post-header-content {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .post h2 {
