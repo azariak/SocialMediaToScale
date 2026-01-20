@@ -21,13 +21,26 @@ function initializeCardHeights() {
     });
 }
 
+// Position floating text elements based on their data-position attribute
+function initializeFloatingText() {
+    document.querySelectorAll('.floating-text').forEach(text => {
+        const position = parseFloat(text.getAttribute('data-position'));
+        const post = text.closest('.post');
+        if (post && !isNaN(position)) {
+            const cardHeight = post.offsetHeight;
+            text.style.top = `${position * cardHeight}px`;
+        }
+    });
+}
+
 // Create progress markers for each milestone
 function initializeProgressMarkers() {
     setTimeout(() => {
         elements.posts.forEach(post => {
             const marker = document.createElement('div');
             marker.className = 'progress-marker';
-            const offset = post.offsetTop + (post.offsetHeight / 2);
+            const headerContent = post.querySelector('.post-header-content');
+            const offset = post.offsetTop + (headerContent ? headerContent.offsetTop : 40);
             const percent = (offset / document.body.scrollHeight) * 100;
             marker.style.top = `${percent}%`;
             elements.progressBar.appendChild(marker);
@@ -122,6 +135,7 @@ function initializeTimer() {
 // Initialize all components
 function init() {
     initializeCardHeights();
+    initializeFloatingText();
     initializeProgressMarkers();
     initializeProgressTracking();
     initializeMilestoneTracking();
