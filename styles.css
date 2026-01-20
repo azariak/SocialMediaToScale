@@ -87,6 +87,10 @@ body {
     margin-bottom: 40px;
 }
 
+.post:first-child .post-header-content {
+    margin-bottom: 20px;
+}
+
 .post h2 {
     font-size: 48px;
     margin-bottom: 15px;
