@@ -80,7 +80,7 @@ body {
     padding: 20px;
 }
 
-.post {
+.milestone-card {
     background: #1a1a1a;
     border: 1px solid #333;
     border-radius: 12px;
@@ -93,7 +93,7 @@ body {
     position: relative;
 }
 
-.post-header-content {
+.milestone-card-header {
     margin-bottom: 40px;
     position: sticky;
     top: 80px;
@@ -101,27 +101,27 @@ body {
     z-index: 10;
 }
 
-.post:first-child {
+.milestone-card:first-child {
     padding-top: 20px;
 }
 
-.post:first-child .post-header-content {
+.milestone-card:first-child .milestone-card-header {
     margin-bottom: 10px;
 }
 
-.post h2 {
+.milestone-card h2 {
     font-size: 48px;
     margin-bottom: 15px;
     color: #ff4444;
 }
 
-.post p {
+.milestone-card p {
     font-size: 18px;
     color: #aaa;
     line-height: 1.6;
 }
 
-.post-body {
+.milestone-card-body {
     flex: 1;
     display: flex;
     align-items: center;
@@ -162,6 +162,15 @@ body {
     line-height: 1.6;
 }
 
+.positioned-image {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
 .footer {
     position: fixed;
     bottom: 20px;
@@ -189,7 +198,7 @@ body {
         padding: 10px;
     }
 
-    .post.highlight h2 {
+    .milestone-card.highlight h2 {
         font-size: 22px;
     }
 }

@@ -10,24 +10,24 @@ const elements = {
     subtitle: document.querySelector('.subtitle'),
     progressFill: document.querySelector('.progress-fill'),
     progressBar: document.querySelector('.progress-bar'),
-    posts: document.querySelectorAll('.post')
+    milestoneCards: document.querySelectorAll('.milestone-card')
 };
 
 // Initialize card heights based on time data
 function initializeCardHeights() {
-    elements.posts.forEach(post => {
-        const minutes = parseInt(post.getAttribute('data-time'));
-        post.style.height = `${minutes * 100}px`;
+    elements.milestoneCards.forEach(card => {
+        const minutes = parseInt(card.getAttribute('data-time'));
+        card.style.height = `${minutes * 100}px`;
     });
 }
 
-// Position floating text and mini-cards based on their data-position attribute
+// Position floating text, mini-cards, and images based on their data-position attribute
 function initializeFloatingText() {
-    document.querySelectorAll('.floating-text, .mini-card').forEach(element => {
+    document.querySelectorAll('.floating-text, .mini-card, .positioned-image').forEach(element => {
         const position = parseFloat(element.getAttribute('data-position'));
-        const post = element.closest('.post');
-        if (post && !isNaN(position)) {
-            const cardHeight = post.offsetHeight;
+        const card = element.closest('.milestone-card');
+        if (card && !isNaN(position)) {
+            const cardHeight = card.offsetHeight;
             element.style.top = `${position * cardHeight}px`;
         }
     });
@@ -36,11 +36,11 @@ function initializeFloatingText() {
 // Create progress markers for each milestone
 function initializeProgressMarkers() {
     setTimeout(() => {
-        elements.posts.forEach(post => {
+        elements.milestoneCards.forEach(card => {
             const marker = document.createElement('div');
             marker.className = 'progress-marker';
-            const headerContent = post.querySelector('.post-header-content');
-            const offset = post.offsetTop + (headerContent ? headerContent.offsetTop : 40);
+            const header = card.querySelector('.milestone-card-header');
+            const offset = card.offsetTop + (header ? header.offsetTop : 40);
             const percent = (offset / document.body.scrollHeight) * 100;
             marker.style.top = `${percent}%`;
             elements.progressBar.appendChild(marker);
@@ -124,7 +124,7 @@ function initializeMilestoneTracking() {
         });
     }, observerOptions);
 
-    elements.posts.forEach(post => observer.observe(post));
+    elements.milestoneCards.forEach(card => observer.observe(card));
 }
 
 // Initialize timer display
