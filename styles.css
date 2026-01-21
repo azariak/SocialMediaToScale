@@ -15,9 +15,9 @@ body {
     position: fixed;
     left: 50%;
     margin-left: -350px;
-    top: 100px;
+    top: 96px;
     width: 4px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 96px);
     background: #222;
     z-index: 1000;
     cursor: pointer;
