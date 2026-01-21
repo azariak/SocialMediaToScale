@@ -102,11 +102,12 @@ body {
 }
 
 .milestone-card:first-child {
-    padding-top: 20px;
+    padding-top: 0;
 }
 
 .milestone-card:first-child .milestone-card-header {
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    margin-top: -5px;
 }
 
 .milestone-card h2 {
