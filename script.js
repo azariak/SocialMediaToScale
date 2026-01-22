@@ -132,6 +132,36 @@ function initializeTimer() {
     setInterval(updateSubtitleDisplay, 1000);
 }
 
+// Handle share button functionality
+function initializeShareButton() {
+    const shareButton = document.getElementById('shareButton');
+    if (!shareButton) return;
+
+    shareButton.addEventListener('click', async () => {
+        const shareData = {
+            title: 'The Cost of Scrolling',
+            text: 'An interactive visualization showing the true scale of time spent on social media.',
+            url: window.location.href
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                // Fallback: copy to clipboard
+                await navigator.clipboard.writeText(window.location.href);
+                const originalText = shareButton.innerHTML;
+                shareButton.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Copied!';
+                setTimeout(() => {
+                    shareButton.innerHTML = originalText;
+                }, 2000);
+            }
+        } catch (err) {
+            console.log('Share failed:', err);
+        }
+    });
+}
+
 // Initialize all components
 function init() {
     initializeCardHeights();
@@ -140,6 +170,7 @@ function init() {
     initializeProgressTracking();
     initializeMilestoneTracking();
     initializeTimer();
+    initializeShareButton();
 }
 
 // Start the application
