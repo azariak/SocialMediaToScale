@@ -172,6 +172,48 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
+.end-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #000 0%, #1a0a0a 50%, #000 100%);
+    border-top: 1px solid #333;
+    padding: 60px 20px;
+    margin-top: 40px;
+}
+
+.end-screen-content {
+    max-width: 600px;
+    text-align: center;
+}
+
+.end-screen-content h2 {
+    font-size: 56px;
+    margin-bottom: 40px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.end-screen-content p {
+    font-size: 20px;
+    color: #bbb;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.end-screen-cta {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #333;
+}
+
+.end-screen-cta p {
+    font-size: 24px;
+    color: #ff4444;
+    font-weight: 600;
+}
+
 .footer {
     position: fixed;
     bottom: 20px;
