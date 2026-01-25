@@ -162,6 +162,75 @@ function initializeShareButton() {
     });
 }
 
+// Handle sources modal functionality
+function initializeSourcesModal() {
+    const sourcesButton = document.getElementById('sourcesButton');
+    const modal = document.getElementById('sourcesModal');
+    const closeButton = document.getElementById('closeModal');
+    const modalBody = document.getElementById('sourcesModalBody');
+
+    if (!sourcesButton || !modal || !closeButton || !modalBody) return;
+
+    // Populate modal with milestone data
+    function populateModal() {
+        modalBody.innerHTML = '';
+
+        elements.milestoneCards.forEach(card => {
+            const header = card.querySelector('.milestone-card-header');
+            const title = header.querySelector('h2')?.textContent || '';
+            const description = header.querySelector('p')?.textContent || '';
+            const source = card.getAttribute('data-source') || '';
+
+            const sourceItem = document.createElement('div');
+            sourceItem.className = 'source-item';
+
+            let content = `<h3>${title}</h3>`;
+
+            if (description) {
+                content += `<p>${description}</p>`;
+            }
+
+            if (source) {
+                content += `<div class="source-link">Source: <a href="${source}" target="_blank" rel="noopener noreferrer">${source}</a></div>`;
+            } else {
+                content += `<div class="source-link">Source: <span style="color: #555;">No source specified</span></div>`;
+            }
+
+            sourceItem.innerHTML = content;
+            modalBody.appendChild(sourceItem);
+        });
+    }
+
+    // Open modal
+    sourcesButton.addEventListener('click', () => {
+        populateModal();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Close modal
+    closeButton.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
 // Initialize all components
 function init() {
     initializeCardHeights();
@@ -171,6 +240,7 @@ function init() {
     initializeMilestoneTracking();
     initializeTimer();
     initializeShareButton();
+    initializeSourcesModal();
 }
 
 // Start the application

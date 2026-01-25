@@ -44,14 +44,14 @@
     </div>
 
     <div class="feed">
-        <div class="milestone-card" data-time="1">
+        <div class="milestone-card" data-time="1" data-source="">
             <div class="milestone-card-header">
                 <h2>1 Minute</h2>
             </div>
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="5">
+        <div class="milestone-card" data-time="5" data-source="">
             <div class="milestone-card-header">
                 <h2>5 Minutes</h2>
                 <p>Quick scroll session before bed</p>
@@ -59,7 +59,7 @@
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="15">
+        <div class="milestone-card" data-time="15" data-source="">
             <div class="milestone-card-header">
                 <h2>15 Minutes</h2>
                 <p>Average morning social media check</p>
@@ -67,7 +67,7 @@
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="30">
+        <div class="milestone-card" data-time="30" data-source="">
             <div class="milestone-card-header">
                 <h2>30 Minutes</h2>
                 <p>Lunch break spent scrolling</p>
@@ -75,7 +75,7 @@
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="60">
+        <div class="milestone-card" data-time="60" data-source="">
             <div class="milestone-card-header">
                 <h2>1 Hour</h2>
                 <p>Evening wind-down on feeds</p>
@@ -83,7 +83,7 @@
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="150">
+        <div class="milestone-card" data-time="150" data-source="">
             <div class="milestone-card-header">
                 <h2>2.5 Hours</h2>
                 <p>Average daily social media usage per person</p>
@@ -91,7 +91,7 @@
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="300">
+        <div class="milestone-card" data-time="300" data-source="">
             <div class="milestone-card-header">
                 <h2>5 Hours</h2>
                 <p>Heavy user's daily consumption</p>
@@ -99,7 +99,7 @@
             <div class="milestone-card-body"></div>
         </div>
 
-        <div class="milestone-card" data-time="1440">
+        <div class="milestone-card" data-time="1440" data-source="">
             <div class="milestone-card-header">
                 <h2>1 Day</h2>
                 <p>Time spent per month by average user</p>
@@ -137,10 +137,27 @@
                 <img src="grass.png" alt="" class="grass-image">
             </div>
         </div>
+
+        <div class="bottom-footer">
+            <button class="sources-link" id="sourcesButton">Sources</button>
+        </div>
     </div>
 
     <div class="footer">
         A <a href="https://github.com/azariak/SocialMediaToScale" target="_blank">visualization</a> by <a href="https://azariak.com" target="_blank">Azaria Kelman</a> and Isaac Mansell
+    </div>
+
+    <!-- Sources Modal -->
+    <div class="sources-modal" id="sourcesModal">
+        <div class="sources-modal-content">
+            <div class="sources-modal-header">
+                <h2>Sources</h2>
+                <button class="sources-modal-close" id="closeModal">×</button>
+            </div>
+            <div class="sources-modal-body" id="sourcesModalBody">
+                <!-- Content will be dynamically populated -->
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
