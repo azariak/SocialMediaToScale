@@ -285,6 +285,48 @@ function initializeSourcesModal() {
     });
 }
 
+// Handle attribution modal functionality
+function initializeAttributionModal() {
+    const isaacLink = document.getElementById('isaacLink');
+    const maxLink = document.getElementById('maxLink');
+    const modal = document.getElementById('attributionModal');
+    const closeButton = document.getElementById('closeAttributionModal');
+
+    if (!isaacLink || !maxLink || !modal || !closeButton) return;
+
+    // Open modal function
+    function openModal(e) {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal function
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Event listeners
+    isaacLink.addEventListener('click', openModal);
+    maxLink.addEventListener('click', openModal);
+    closeButton.addEventListener('click', closeModal);
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
 // Initialize all components
 function init() {
     initializeCardHeights();
@@ -296,6 +338,7 @@ function init() {
     initializeShareButton();
     initializeSourcesModal();
     initializeStats();
+    initializeAttributionModal();
 }
 
 // Start the application

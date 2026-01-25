@@ -475,6 +475,40 @@ body {
     color: #ff4444;
 }
 
+.attribution-section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.attribution-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.attribution-section h3 {
+    font-size: 20px;
+    color: #ff4444;
+    margin-bottom: 8px;
+}
+
+.attribution-section p {
+    font-size: 15px;
+    color: #aaa;
+    margin-bottom: 8px;
+}
+
+.attribution-section a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.attribution-section a:hover {
+    color: #ff4444;
+}
+
 @media (max-width: 640px) {
     .header h1 {
         font-size: 20px;
