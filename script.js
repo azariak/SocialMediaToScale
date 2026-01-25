@@ -1,3 +1,6 @@
+// Constants
+const LIVES_LOST_PER_SECOND = 0.18992844156;
+
 // State
 const state = {
     startTime: Date.now(),
@@ -132,6 +135,56 @@ function initializeTimer() {
     setInterval(updateSubtitleDisplay, 1000);
 }
 
+// Calculate seconds elapsed since start of current year
+function getSecondsThisYear() {
+    const now = new Date();
+    const startOfYear = new Date(now.getFullYear(), 0, 1);
+    return (now - startOfYear) / 1000;
+}
+
+// Calculate seconds elapsed since start of today (midnight)
+function getSecondsToday() {
+    const now = new Date();
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return (now - startOfDay) / 1000;
+}
+
+// Calculate seconds elapsed since site load
+function getSecondsSinceLoad() {
+    return (Date.now() - state.startTime) / 1000;
+}
+
+// Format number with commas and decimal places
+function formatStatNumber(num, decimals = 2) {
+    return num.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+    });
+}
+
+// Update stats display
+function updateStatsDisplay() {
+    const statYear = document.getElementById('statYear');
+    const statToday = document.getElementById('statToday');
+    const statSince = document.getElementById('statSince');
+
+    if (!statYear || !statToday || !statSince) return;
+
+    const livesThisYear = getSecondsThisYear() * LIVES_LOST_PER_SECOND;
+    const livesToday = getSecondsToday() * LIVES_LOST_PER_SECOND;
+    const livesSinceLoad = getSecondsSinceLoad() * LIVES_LOST_PER_SECOND;
+
+    statYear.textContent = formatStatNumber(livesThisYear, 2);
+    statToday.textContent = formatStatNumber(livesToday, 2);
+    statSince.textContent = formatStatNumber(livesSinceLoad, 4);
+}
+
+// Initialize stats tracking
+function initializeStats() {
+    updateStatsDisplay();
+    setInterval(updateStatsDisplay, 100); // Update every 100ms for smooth animation
+}
+
 // Handle share button functionality
 function initializeShareButton() {
     const shareButton = document.getElementById('shareButton');
@@ -241,6 +294,7 @@ function init() {
     initializeTimer();
     initializeShareButton();
     initializeSourcesModal();
+    initializeStats();
 }
 
 // Start the application

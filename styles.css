@@ -15,9 +15,9 @@ body {
     position: fixed;
     left: 50%;
     margin-left: -350px;
-    top: 96px;
+    top: 175px;
     width: 4px;
-    height: calc(100vh - 96px);
+    height: calc(100vh - 175px);
     background: #222;
     z-index: 1000;
     cursor: pointer;
@@ -28,6 +28,13 @@ body {
         left: 20px;
         margin-left: 0;
         width: 3px;
+    }
+}
+
+@media (max-width: 640px) {
+    .progress-bar {
+        top: 163px;
+        height: calc(100vh - 163px);
     }
 }
 
@@ -53,11 +60,13 @@ body {
 }
 
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-    padding: 20px;
+    padding: 20px 20px 25px;
     text-align: center;
     border-bottom: 1px solid #333;
     z-index: 100;
@@ -74,10 +83,72 @@ body {
     color: #888;
 }
 
+.stats-bar {
+    position: fixed;
+    top: 81px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    z-index: 100;
+}
+
+.stat-item {
+    padding: 15px 20px;
+    text-align: center;
+    border-right: 1px solid #333;
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 24px;
+    color: #ff4444;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+    .stats-bar {
+        top: 75px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+    }
+
+    .stat-value {
+        font-size: 18px;
+    }
+
+    .stat-item {
+        padding: 12px 10px;
+    }
+
+    .feed {
+        padding-top: 170px;
+    }
+}
+
 .feed {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 185px;
 }
 
 .milestone-card {
@@ -96,7 +167,7 @@ body {
 .milestone-card-header {
     margin-bottom: 40px;
     position: sticky;
-    top: 80px;
+    top: 153px;
     padding: 20px 0 10px 0;
     z-index: 10;
 }
@@ -408,6 +479,10 @@ body {
 
     .feed {
         padding: 10px;
+    }
+
+    .milestone-card-header {
+        top: 141px;
     }
 
     .milestone-card.highlight h2 {
