@@ -89,11 +89,12 @@ function initializeProgressTracking() {
 function formatTimerText(elapsed) {
     const minutes = Math.floor(elapsed / 60);
     const seconds = elapsed % 60;
+    const livesLost = (elapsed * LIVES_LOST_PER_SECOND).toFixed(4);
 
     if (minutes > 0) {
-        return `You've been scrolling for ${minutes}m ${seconds}s... that's time you'll never get back`;
+        return `You've been scrolling for ${minutes}m ${seconds}s... ${livesLost} lives have been lost to scrolling since you've joined`;
     } else {
-        return `You've been scrolling for ${seconds} seconds...`;
+        return `You've been scrolling for ${seconds} seconds... ${livesLost} lives have been lost to scrolling since you've joined`;
     }
 }
 
