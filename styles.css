@@ -33,8 +33,8 @@ body {
 
 @media (max-width: 640px) {
     .progress-bar {
-        top: 163px;
-        height: calc(100vh - 163px);
+        top: 178px;
+        height: calc(100vh - 178px);
     }
 }
 
@@ -131,7 +131,7 @@ body {
 
 @media (max-width: 640px) {
     .stats-bar {
-        top: 75px;
+        top: 90px;
     }
 
     .stat-label {
@@ -510,14 +510,22 @@ body {
 }
 
 @media (max-width: 640px) {
+    .header {
+        padding: 20px 20px 30px;
+    }
+
     .header h1 {
         font-size: 20px;
+    }
+
+    .subtitle {
+        line-height: 1.4;
     }
 
     .feed {
         padding: 10px 20px;
         max-width: 90%;
-        padding-top: 160px;
+        padding-top: 175px;
     }
 
     .milestone-card {
@@ -534,7 +542,7 @@ body {
     }
 
     .milestone-card-header {
-        top: 141px;
+        top: 156px;
     }
 
     .milestone-card.highlight h2 {
