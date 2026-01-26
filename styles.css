@@ -44,7 +44,7 @@ body {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +74,7 @@ body {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 940px) {
     .intro-text {
         font-size: 22px;
     }
