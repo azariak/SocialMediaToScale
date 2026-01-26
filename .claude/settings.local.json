@@ -10,7 +10,6 @@
       "Bash(git push:*)",
       "Bash(git remote:*)",
       "WebSearch",
-      "WebFetch(domain:eattherichtextformat.github.io)",
       "Bash(git revert:*)",
       "Bash(cd:*)"
     ]
