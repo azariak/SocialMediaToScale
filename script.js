@@ -32,6 +32,39 @@ function initializeFloatingText() {
         if (card && !isNaN(position)) {
             const cardHeight = card.offsetHeight;
             element.style.top = `${position * cardHeight}px`;
+
+            // Handle captions for images and videos
+            if (element.classList.contains('positioned-image') || element.classList.contains('positioned-video')) {
+                const captionTop = element.getAttribute('data-caption-top');
+                const captionBottom = element.getAttribute('data-caption-bottom');
+                const cardBody = card.querySelector('.milestone-card-body');
+
+                if (captionTop && cardBody) {
+                    const topCaption = document.createElement('div');
+                    topCaption.className = 'media-caption-top';
+                    topCaption.textContent = captionTop;
+                    cardBody.appendChild(topCaption);
+
+                    // Position above the media element (accounting for media height)
+                    const mediaCenterY = position * cardHeight;
+                    const mediaHeight = element.offsetHeight || element.videoHeight || 0;
+                    const mediaTopEdge = mediaCenterY - (mediaHeight / 2);
+                    topCaption.style.top = `${mediaTopEdge - 265}px`;
+                }
+
+                if (captionBottom && cardBody) {
+                    const bottomCaption = document.createElement('div');
+                    bottomCaption.className = 'media-caption-bottom';
+                    bottomCaption.textContent = captionBottom;
+                    cardBody.appendChild(bottomCaption);
+
+                    // Position below the media element (accounting for media height)
+                    const mediaCenterY = position * cardHeight;
+                    const mediaHeight = element.offsetHeight || element.videoHeight || 0;
+                    const mediaBottomEdge = mediaCenterY + (mediaHeight / 2);
+                    bottomCaption.style.top = `${mediaBottomEdge + 245}px`;
+                }
+            }
         }
     });
 }

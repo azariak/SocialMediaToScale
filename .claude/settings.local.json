@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(if [ -f \".claude/settings.json\" ])",
+      "Bash(then cat \".claude/settings.json\")",
+      "Bash(else echo \"not exists\")",
+      "Bash(fi)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git remote:*)",
+      "WebSearch",
+      "WebFetch(domain:eattherichtextformat.github.io)",
+      "Bash(git revert:*)"
+    ]
+  }
+}

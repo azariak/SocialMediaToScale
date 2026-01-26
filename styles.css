@@ -255,6 +255,26 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
+.media-caption-top,
+.media-caption-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.4;
+}
+
+.media-caption-top {
+    margin-bottom: 8px;
+}
+
+.media-caption-bottom {
+    margin-top: 8px;
+}
+
 .end-screen {
     min-height: 100vh;
     display: flex;
