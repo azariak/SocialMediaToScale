@@ -228,7 +228,18 @@ function initializeSourcesModal() {
     function populateModal() {
         modalBody.innerHTML = '';
 
-        // Add stats calculation section first
+        // Add source code link to header
+        const modalHeader = modal.querySelector('.sources-modal-header');
+        let existingLink = modalHeader.querySelector('.source-code-link');
+        if (!existingLink) {
+            const sourceCodeLink = document.createElement('div');
+            sourceCodeLink.className = 'source-code-link';
+            sourceCodeLink.style.cssText = 'font-size: 14px; color: #888; margin-top: 8px; grid-column: 1; grid-row: 2;';
+            sourceCodeLink.innerHTML = `View the source code on <a href="https://github.com/azariak/SocialMediaToScale" target="_blank" rel="noopener noreferrer" style="color: #ff4444; text-decoration: none;">GitHub</a>`;
+            modalHeader.appendChild(sourceCodeLink);
+        }
+
+        // Add stats calculation section
         const statsSection = document.createElement('div');
         statsSection.className = 'source-item';
         statsSection.innerHTML = `
