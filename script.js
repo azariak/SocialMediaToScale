@@ -13,7 +13,12 @@ const elements = {
     subtitle: document.querySelector('.subtitle'),
     progressFill: document.querySelector('.progress-fill'),
     progressBar: document.querySelector('.progress-bar'),
-    milestoneCards: document.querySelectorAll('.milestone-card')
+    milestoneCards: document.querySelectorAll('.milestone-card'),
+    introScreen: document.querySelector('.intro-screen'),
+    header: document.querySelector('.header'),
+    statsBar: document.querySelector('.stats-bar'),
+    scrollIndicator: document.querySelector('.scroll-indicator'),
+    feed: document.querySelector('.feed')
 };
 
 // Initialize card heights based on time data
@@ -106,9 +111,29 @@ function handleProgressBarDrag(e) {
     }
 }
 
+// Update UI visibility based on scroll position (show after intro screen)
+function updateUIVisibility() {
+    const introBottom = elements.introScreen ? elements.introScreen.offsetHeight : 0;
+    const isPassedIntro = window.scrollY > introBottom * 0.5;
+
+    elements.header.classList.toggle('ui-visible', isPassedIntro);
+    elements.statsBar.classList.toggle('ui-visible', isPassedIntro);
+    elements.progressBar.classList.toggle('ui-visible', isPassedIntro);
+}
+
+// Initialize intro screen scroll arrow click
+function initializeIntroScreen() {
+    if (elements.scrollIndicator && elements.feed) {
+        elements.scrollIndicator.addEventListener('click', () => {
+            elements.feed.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+}
+
 // Initialize progress bar interactions
 function initializeProgressTracking() {
     window.addEventListener('scroll', updateProgressBar);
+    window.addEventListener('scroll', updateUIVisibility);
     elements.progressBar.addEventListener('click', handleProgressBarClick);
     elements.progressFill.addEventListener('mousedown', (e) => {
         state.isDragging = true;
@@ -401,6 +426,7 @@ function init() {
     initializeSourcesModal();
     initializeStats();
     initializeAttributionModal();
+    initializeIntroScreen();
 }
 
 // Start the application
