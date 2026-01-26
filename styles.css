@@ -246,6 +246,15 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
+.positioned-video {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
 .end-screen {
     min-height: 100vh;
     display: flex;

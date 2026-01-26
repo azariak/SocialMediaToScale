@@ -24,9 +24,9 @@ function initializeCardHeights() {
     });
 }
 
-// Position floating text, mini-cards, and images based on their data-position attribute
+// Position floating text, mini-cards, images, and videos based on their data-position attribute
 function initializeFloatingText() {
-    document.querySelectorAll('.floating-text, .mini-card, .positioned-image').forEach(element => {
+    document.querySelectorAll('.floating-text, .mini-card, .positioned-image, .positioned-video').forEach(element => {
         const position = parseFloat(element.getAttribute('data-position'));
         const card = element.closest('.milestone-card');
         if (card && !isNaN(position)) {
@@ -228,6 +228,25 @@ function initializeSourcesModal() {
     function populateModal() {
         modalBody.innerHTML = '';
 
+        // Add stats calculation section first
+        const statsSection = document.createElement('div');
+        statsSection.className = 'source-item';
+        statsSection.innerHTML = `
+            <h3>Lives Lost Calculation</h3>
+            <p>The stats bar shows lives lost based on the following calculation:</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                The world collectively spends <strong>11.5 billion hours</strong> on social media platforms daily.<br>
+                <div class="source-link">Source: <a href="https://umaine.edu/undiscoveredmaine/small-business/resources/marketing-for-small-business/social-media-tools/social-media-statistics-details/" target="_blank" rel="noopener noreferrer">University of Maine - Social Media Statistics</a></div><br>
+                <strong>Calculation:</strong><br>
+                • 80 years in hours: 700,800<br>
+                • 11.5 billion ÷ 700,800 = 16,409.82 lives lost per day<br>
+                • Seconds in 24 hours: 86,400<br>
+                • 16,409.82 ÷ 86,400 = <strong>0.18992 lives lost per second</strong>
+            </p>
+        `;
+        modalBody.appendChild(statsSection);
+
+        // Add milestone cards
         elements.milestoneCards.forEach(card => {
             const header = card.querySelector('.milestone-card-header');
             const title = header.querySelector('h2')?.textContent || '';
