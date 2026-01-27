@@ -18,7 +18,8 @@ const elements = {
     header: document.querySelector('.header'),
     statsBar: document.querySelector('.stats-bar'),
     scrollIndicator: document.querySelector('.scroll-indicator'),
-    feed: document.querySelector('.feed')
+    feed: document.querySelector('.feed'),
+    scaleLabel: document.querySelector('.scale-label')
 };
 
 // Initialize card heights based on time data
@@ -89,10 +90,40 @@ function initializeProgressMarkers() {
     }, 100);
 }
 
+// Calculate total minutes from all milestone cards
+function getTotalMinutes() {
+    let total = 0;
+    elements.milestoneCards.forEach(card => {
+        total += parseInt(card.getAttribute('data-time')) || 0;
+    });
+    return total;
+}
+
 // Update progress bar fill based on scroll position
 function updateProgressBar() {
     const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     elements.progressFill.style.height = `${scrollPercent}%`;
+
+    // Update scale label
+    if (elements.scaleLabel) {
+        const totalMinutes = getTotalMinutes();
+        const currentMinutes = (scrollPercent / 100) * totalMinutes;
+        const hours = currentMinutes / 60;
+
+        // Format hours display
+        let hoursText;
+        if (hours < 1) {
+            hoursText = `${Math.round(currentMinutes)} min`;
+        } else if (hours < 24) {
+            hoursText = `${hours.toFixed(1)} hrs`;
+        } else {
+            const days = hours / 24;
+            hoursText = `${days.toFixed(1)} days`;
+        }
+
+        elements.scaleLabel.textContent = hoursText;
+        elements.scaleLabel.style.top = `${scrollPercent}%`;
+    }
 }
 
 // Handle progress bar click to jump to position
