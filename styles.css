@@ -100,10 +100,12 @@ body {
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .progress-bar.ui-visible {
     opacity: 1;
+    pointer-events: auto;
 }
 
 @media (max-width: 768px) {
