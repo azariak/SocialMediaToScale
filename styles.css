@@ -260,6 +260,56 @@ body {
     font-variant-numeric: tabular-nums;
 }
 
+.stats-info {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.info-icon {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.info-icon:hover {
+    color: #888;
+}
+
+.info-tooltip {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 8px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #ccc;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 101;
+}
+
+.stats-info:hover .info-tooltip,
+.stats-info.active .info-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 640px) {
+    .info-tooltip {
+        white-space: normal;
+        width: 200px;
+        right: -5px;
+    }
+}
+
 @media (max-width: 640px) {
     .stats-bar {
         top: 90px;
