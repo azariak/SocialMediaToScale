@@ -75,6 +75,10 @@ body {
 }
 
 @media (max-width: 940px) {
+    .scroll-indicator {
+        bottom: 140px;
+    }
+
     .intro-text {
         font-size: 22px;
     }
