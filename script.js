@@ -328,21 +328,33 @@ function initializeSourcesModal() {
             modalHeader.appendChild(sourceCodeLink);
         }
 
+        // Add intro screen stat source
+        const introSection = document.createElement('div');
+        introSection.className = 'source-item';
+        introSection.innerHTML = `
+            <h3>Daily Phone Usage</h3>
+            <p>The average person spends <strong>5.27 hours</strong> on their phone every day.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Calculation:</strong> 5 hours 16 minutes = 5 + (16 ÷ 60) = <strong>5.27 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://www.harmonyhit.com/phone-screen-time-statistics/" target="_blank" rel="noopener noreferrer">HarmonyHit - Phone Screen Time Statistics</a></div>
+        `;
+        modalBody.appendChild(introSection);
+
         // Add stats calculation section
         const statsSection = document.createElement('div');
         statsSection.className = 'source-item';
         statsSection.innerHTML = `
             <h3>Lives Lost Calculation</h3>
-            <p>The stats bar shows lives lost based on the following calculation:</p>
+            <p>The world collectively spends <strong>11.5 billion hours</strong> on social media platforms daily.</p>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                The world collectively spends <strong>11.5 billion hours</strong> on social media platforms daily.<br>
-                <div class="source-link">Source: <a href="https://umaine.edu/undiscoveredmaine/small-business/resources/marketing-for-small-business/social-media-tools/social-media-statistics-details/" target="_blank" rel="noopener noreferrer">University of Maine - Social Media Statistics</a></div><br>
                 <strong>Calculation:</strong><br>
                 • 80 years in hours: 700,800<br>
                 • 11.5 billion ÷ 700,800 = 16,409.82 lives lost per day<br>
                 • Seconds in 24 hours: 86,400<br>
                 • 16,409.82 ÷ 86,400 = <strong>0.18992 lives lost per second</strong>
             </p>
+            <div class="source-link">Source: <a href="https://umaine.edu/undiscoveredmaine/small-business/resources/marketing-for-small-business/social-media-tools/social-media-statistics-details/" target="_blank" rel="noopener noreferrer">University of Maine - Social Media Statistics</a></div>
         `;
         modalBody.appendChild(statsSection);
 
