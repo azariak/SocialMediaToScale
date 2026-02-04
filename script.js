@@ -22,11 +22,39 @@ const elements = {
     scaleLabel: document.querySelector('.scale-label')
 };
 
-// Initialize card heights based on time data
+// Initialize card/unit heights based on hours data (area to scale)
 function initializeCardHeights() {
+    // Scale factor: area proportional to hours
+    // Smaller multiplier = smaller cards
+    const SCALE_MULTIPLIER = 15;
+    const MIN_SIZE = 2; // Minimum pixels for visibility
+
+    // Calculate size from hours (area to scale: side = √hours × multiplier)
+    function getSize(hours) {
+        return Math.max(Math.sqrt(hours) * SCALE_MULTIPLIER, MIN_SIZE);
+    }
+
+    // Handle small scale units (squares in the row)
+    document.querySelectorAll('.scale-unit').forEach(unit => {
+        const hours = parseFloat(unit.getAttribute('data-hours'));
+        const size = getSize(hours);
+        unit.style.width = `${size}px`;
+        unit.style.height = `${size}px`;
+    });
+
+    // Handle milestone cards with data-hours attribute
+    // Cards are full width, height varies so area is to scale
+    // Using same area formula: area = hours × SCALE_MULTIPLIER²
+    // With fixed width, height = (hours × SCALE_MULTIPLIER²) / width
+    const cardWidth = elements.feed ? elements.feed.offsetWidth - 80 : 520;
     elements.milestoneCards.forEach(card => {
-        const minutes = parseInt(card.getAttribute('data-time'));
-        card.style.height = `${minutes * 100}px`;
+        const hours = parseFloat(card.getAttribute('data-hours'));
+        if (hours) {
+            // Height calculated so area is proportional to hours
+            const area = hours * (SCALE_MULTIPLIER * SCALE_MULTIPLIER);
+            const height = area / cardWidth;
+            card.style.height = `${height}px`;
+        }
     });
 }
 
@@ -90,11 +118,11 @@ function initializeProgressMarkers() {
     }, 100);
 }
 
-// Calculate total minutes from all milestone cards
-function getTotalMinutes() {
+// Calculate total hours from all scale units and cards
+function getTotalHours() {
     let total = 0;
-    elements.milestoneCards.forEach(card => {
-        total += parseInt(card.getAttribute('data-time')) || 0;
+    document.querySelectorAll('.scale-unit, .milestone-card').forEach(el => {
+        total += parseFloat(el.getAttribute('data-hours')) || 0;
     });
     return total;
 }
@@ -106,22 +134,28 @@ function updateProgressBar() {
 
     // Update scale label
     if (elements.scaleLabel) {
-        const totalMinutes = getTotalMinutes();
-        const currentMinutes = (scrollPercent / 100) * totalMinutes;
-        const hours = currentMinutes / 60;
+        const totalHours = getTotalHours();
+        const currentHours = (scrollPercent / 100) * totalHours;
 
-        // Format hours display
-        let hoursText;
-        if (hours < 1) {
-            hoursText = `${Math.round(currentMinutes)} min`;
-        } else if (hours < 24) {
-            hoursText = `${hours.toFixed(1)} hrs`;
+        // Format hours display with appropriate units
+        let displayText;
+        if (currentHours < 1) {
+            displayText = `${Math.round(currentHours * 60)} min`;
+        } else if (currentHours < 24) {
+            displayText = `${currentHours.toFixed(1)} hrs`;
+        } else if (currentHours < 8760) { // Less than a year
+            const days = currentHours / 24;
+            displayText = `${days.toFixed(0)} days`;
+        } else if (currentHours < 1000000) {
+            const years = currentHours / 8760;
+            displayText = `${years.toFixed(1)} yrs`;
+        } else if (currentHours < 1000000000) {
+            displayText = `${(currentHours / 1000000).toFixed(1)}M hrs`;
         } else {
-            const days = hours / 24;
-            hoursText = `${days.toFixed(1)} days`;
+            displayText = `${(currentHours / 1000000000).toFixed(1)}B hrs`;
         }
 
-        elements.scaleLabel.textContent = hoursText;
+        elements.scaleLabel.textContent = displayText;
         elements.scaleLabel.style.top = `${scrollPercent}%`;
     }
 }
@@ -139,6 +173,28 @@ function handleProgressBarDrag(e) {
         const percent = e.clientY / window.innerHeight;
         const scrollTo = percent * (document.body.scrollHeight - window.innerHeight);
         window.scrollTo({ top: scrollTo });
+    }
+}
+
+// Handle massive card header sticky behavior (sticky for first 5% of card)
+function updateMassiveCardHeader() {
+    const massiveCard = document.querySelector('.scale-card-massive');
+    if (!massiveCard) return;
+
+    const header = massiveCard.querySelector('.milestone-card-header');
+    if (!header) return;
+
+    const cardRect = massiveCard.getBoundingClientRect();
+    const cardHeight = massiveCard.offsetHeight;
+    const stickyDuration = cardHeight * 0.05; // 5% of card height
+
+    // Calculate how far we've scrolled into the card
+    const scrolledIntoCard = -cardRect.top + 153; // 153px is the sticky top position
+
+    if (scrolledIntoCard > stickyDuration) {
+        header.classList.add('unstick');
+    } else {
+        header.classList.remove('unstick');
     }
 }
 
@@ -165,6 +221,7 @@ function initializeIntroScreen() {
 function initializeProgressTracking() {
     window.addEventListener('scroll', updateProgressBar);
     window.addEventListener('scroll', updateUIVisibility);
+    window.addEventListener('scroll', updateMassiveCardHeader);
     elements.progressBar.addEventListener('click', handleProgressBarClick);
     elements.progressFill.addEventListener('mousedown', (e) => {
         state.isDragging = true;
@@ -358,9 +415,27 @@ function initializeSourcesModal() {
         `;
         modalBody.appendChild(statsSection);
 
-        // Add milestone cards
+        // Add scale units info
+        const scaleUnits = document.querySelectorAll('.scale-unit');
+        scaleUnits.forEach(unit => {
+            const hours = unit.getAttribute('data-hours');
+            const label = unit.querySelector('.scale-label-inline');
+            if (label) {
+                const sourceItem = document.createElement('div');
+                sourceItem.className = 'source-item';
+                sourceItem.innerHTML = `
+                    <h3>${hours} Hour${hours !== '1' ? 's' : ''}</h3>
+                    <p>Visual scale unit (1 hour = 1 pixel)</p>
+                `;
+                modalBody.appendChild(sourceItem);
+            }
+        });
+
+        // Add massive card info
         elements.milestoneCards.forEach(card => {
             const header = card.querySelector('.milestone-card-header');
+            if (!header) return;
+
             const title = header.querySelector('h2')?.textContent || '';
             const description = header.querySelector('p')?.textContent || '';
             const source = card.getAttribute('data-source') || '';

@@ -335,6 +335,50 @@ body {
     margin: 0 auto;
     padding: 20px;
     padding-top: 185px;
+    padding-left: 40px; /* Space for labels on left side of small units */
+    overflow-x: hidden;
+}
+
+/* Scale row - horizontal display of small units */
+.scale-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 60px;
+    margin-bottom: 60px;
+    padding: 40px 0;
+}
+
+.scale-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.scale-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.scale-desc {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.scale-arrow {
+    font-size: 20px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+/* Scale units - small red squares representing hours (1 hour = 1 pixel) */
+.scale-unit {
+    background: #ff4444;
+    position: relative;
+    min-width: 1px;
+    min-height: 1px;
 }
 
 .milestone-card {
@@ -348,6 +392,31 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+/* Massive card - maintains dark aesthetic but much taller */
+.scale-card-massive {
+    /* Inherits from .milestone-card - dark background with red accents */
+}
+
+/* Sticky header for massive card - stays sticky for first portion of scroll */
+.scale-card-massive .milestone-card-header {
+    position: sticky;
+    top: 153px;
+    background: #1a1a1a;
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    transition: opacity 0.3s ease;
+}
+
+.scale-card-massive .milestone-card-header.unstick {
+    position: relative;
+    top: auto;
 }
 
 .milestone-card-header {
@@ -751,6 +820,7 @@ body {
         padding: 10px 20px;
         max-width: 90%;
         padding-top: 175px;
+        padding-left: 20px;
     }
 
     .milestone-card {
@@ -772,5 +842,26 @@ body {
 
     .milestone-card.highlight h2 {
         font-size: 22px;
+    }
+
+    .scale-row {
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .scale-value {
+        font-size: 14px;
+    }
+
+    .scale-desc {
+        font-size: 12px;
+    }
+
+    .scale-card-massive .milestone-card-header {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        top: 156px;
     }
 }

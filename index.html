@@ -68,7 +68,7 @@
 
     <div class="intro-screen">
         <div class="intro-content">
-            <p class="intro-text">The average person spends <strong>5.27 hrs</strong> on their phone every day.</p>
+            <p class="intro-text">The average person spends <strong>2.5 hrs</strong> on social media every day.</p>
             <p class="intro-subtext">Scroll to see what that really means.</p>
         </div>
         <div class="scroll-indicator">
@@ -77,75 +77,63 @@
     </div>
 
     <div class="feed">
-        <div class="milestone-card" data-time="1" data-source="">
-            <div class="milestone-card-header">
-                <h2>1 Minute</h2>
+        <div class="scale-row">
+            <!-- Daily social media use: 2.5 hours -->
+            <div class="scale-item">
+                <span class="scale-value">2.5 hrs</span>
+                <span class="scale-desc">Daily social media</span>
+                <div class="scale-unit" data-hours="2.5"></div>
             </div>
-            <div class="milestone-card-body"></div>
+
+            <!-- Monthly social media use: 75 hours -->
+            <div class="scale-item">
+                <span class="scale-value">75 hrs</span>
+                <span class="scale-desc">Monthly social media</span>
+                <div class="scale-unit" data-hours="75"></div>
+            </div>
         </div>
 
-        <div class="milestone-card" data-time="5" data-source="">
+        <!-- Yearly social media use per person: ~912 hours -->
+        <div class="milestone-card" data-hours="912">
             <div class="milestone-card-header">
-                <h2>5 Minutes</h2>
-                <p>Quick scroll session before bed</p>
-            </div>
-            <div class="milestone-card-body"></div>
-        </div>
-
-        <div class="milestone-card" data-time="15" data-source="">
-            <div class="milestone-card-header">
-                <h2>15 Minutes</h2>
-                <p>Average morning social media check</p>
-            </div>
-            <div class="milestone-card-body"></div>
-        </div>
-
-        <div class="milestone-card" data-time="30" data-source="">
-            <div class="milestone-card-header">
-                <h2>30 Minutes</h2>
-                <p>Lunch break spent scrolling</p>
-            </div>
-            <div class="milestone-card-body"></div>
-        </div>
-
-        <div class="milestone-card" data-time="60" data-source="">
-            <div class="milestone-card-header">
-                <h2>1 Hour</h2>
-                <p>Evening wind-down on feeds</p>
-            </div>
-            <div class="milestone-card-body"></div>
-        </div>
-
-        <div class="milestone-card" data-time="150" data-source="">
-            <div class="milestone-card-header">
-                <h2>2.5 Hours</h2>
-                <p>Average daily social media usage per person</p>
-            </div>
-            <div class="milestone-card-body"></div>
-        </div>
-
-        <div class="milestone-card" data-time="300" data-source="">
-            <div class="milestone-card-header">
-                <h2>5 Hours</h2>
-                <p>Heavy user's daily consumption</p>
-            </div>
-            <div class="milestone-card-body"></div>
-        </div>
-
-        <div class="milestone-card" data-time="1440" data-source="">
-            <div class="milestone-card-header">
-                <h2>1 Day</h2>
-                <p>Time spent per month by average user</p>
+                <h2>912 Hours</h2>
+                <p>Yearly social media use per person</p>
             </div>
             <div class="milestone-card-body">
-                <span class="floating-text" data-position="0.2">You wake up and reach for your phone...</span>
-                <span class="floating-text" data-position="0.35">Hours pass in what feels like minutes</span>
-                <div class="mini-card" data-position="0.5">
+                <span class="floating-text" data-position="0.3">That's 38 full days of your year...</span>
+                <span class="floating-text" data-position="0.6">...spent scrolling</span>
+            </div>
+        </div>
+
+        <!-- Lifetime social media use per person: 72,960 hours (912 × 80 years) -->
+        <div class="milestone-card" data-hours="72960">
+            <div class="milestone-card-header">
+                <h2>72,960 Hours</h2>
+                <p>Lifetime social media use per person</p>
+            </div>
+            <div class="milestone-card-body">
+                <span class="floating-text" data-position="0.2">That's 8.3 years of your life...</span>
+                <span class="floating-text" data-position="0.5">...spent scrolling through feeds</span>
+                <span class="floating-text" data-position="0.8">A decade of moments, lost to the algorithm</span>
+            </div>
+        </div>
+
+        <!-- 8 million hours - global per-minute social media usage -->
+        <div class="milestone-card scale-card-massive" data-hours="7986111">
+            <div class="milestone-card-header">
+                <h2>8 Million Hours</h2>
+                <p>Time spent on social media globally, every single minute</p>
+            </div>
+            <div class="milestone-card-body">
+                <span class="floating-text" data-position="0.1">You're not alone in this scroll...</span>
+                <span class="floating-text" data-position="0.25">Millions of hours. Every. Single. Minute.</span>
+                <div class="mini-card" data-position="0.4">
                     <h3>1 Hour</h3>
-                    <p>This is just one hour within this entire day</p>
+                    <p>This tiny card represents just one hour within 8 million</p>
                 </div>
-                <span class="floating-text" data-position="0.7">The sun sets. You're still scrolling.</span>
-                <span class="floating-text" data-position="0.85">A full day of your life, gone</span>
+                <span class="floating-text" data-position="0.55">That's 110 human lifetimes worth of scrolling...</span>
+                <span class="floating-text" data-position="0.7">...happening every single minute</span>
+                <span class="floating-text" data-position="0.85">The scroll is endless—your time isn't.</span>
                 <video id="brainrot-video" class="positioned-video" data-position="0.95" data-caption-top="Some brainrot for you..." data-caption-bottom="We haven't lost you yet, have we?" autoplay loop muted playsinline>
                     <source src="media/brainrot.mp4" type="video/mp4">
                 </video>
