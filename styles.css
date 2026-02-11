@@ -393,7 +393,6 @@ body {
     text-align: center;
     position: relative;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 
@@ -402,29 +401,24 @@ body {
     /* Inherits from .milestone-card - dark background with red accents */
 }
 
-/* Sticky header for massive card - stays sticky for first portion of scroll */
-.scale-card-massive .milestone-card-header {
-    position: sticky;
-    top: 153px;
-    background: #1a1a1a;
-    margin-left: -40px;
-    margin-right: -40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    transition: opacity 0.3s ease;
-}
-
-.scale-card-massive .milestone-card-header.unstick {
-    position: relative;
-    top: auto;
-}
-
 .milestone-card-header {
     margin-bottom: 40px;
-    position: sticky;
-    top: 153px;
     padding: 20px 0 10px 0;
     z-index: 10;
+    background: #1a1a1a;
+    width: 100%;
+}
+
+.milestone-card-header.is-stuck {
+    position: fixed;
+    top: 153px;
+    z-index: 50;
+}
+
+@media (max-width: 640px) {
+    .milestone-card-header.is-stuck {
+        top: 156px;
+    }
 }
 
 .milestone-card:first-child {
@@ -454,6 +448,8 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .mini-card {
@@ -836,10 +832,6 @@ body {
         margin-top: -20px;
     }
 
-    .milestone-card-header {
-        top: 156px;
-    }
-
     .milestone-card.highlight h2 {
         font-size: 22px;
     }
@@ -857,11 +849,4 @@ body {
         font-size: 12px;
     }
 
-    .scale-card-massive .milestone-card-header {
-        margin-left: -20px;
-        margin-right: -20px;
-        padding-left: 20px;
-        padding-right: 20px;
-        top: 156px;
-    }
 }

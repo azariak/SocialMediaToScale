@@ -176,26 +176,55 @@ function handleProgressBarDrag(e) {
     }
 }
 
-// Handle massive card header sticky behavior (sticky for first 5% of card)
-function updateMassiveCardHeader() {
-    const massiveCard = document.querySelector('.scale-card-massive');
-    if (!massiveCard) return;
+// Handle sticky headers for all milestone cards via JS
+function updateStickyHeaders() {
+    const stickyTop = window.innerWidth <= 640 ? 156 : 153;
 
-    const header = massiveCard.querySelector('.milestone-card-header');
-    if (!header) return;
+    elements.milestoneCards.forEach(card => {
+        const header = card.querySelector('.milestone-card-header');
+        if (!header) return;
 
-    const cardRect = massiveCard.getBoundingClientRect();
-    const cardHeight = massiveCard.offsetHeight;
-    const stickyDuration = cardHeight * 0.05; // 5% of card height
+        const cardRect = card.getBoundingClientRect();
+        const cardPadding = parseFloat(getComputedStyle(card).paddingTop) || 0;
+        const headerHeight = header.offsetHeight;
 
-    // Calculate how far we've scrolled into the card
-    const scrolledIntoCard = -cardRect.top + 153; // 153px is the sticky top position
+        // Top of card content area (after padding)
+        const cardContentTop = cardRect.top + cardPadding;
+        // Bottom of card minus header height so header doesn't overflow
+        const cardBottom = cardRect.bottom - headerHeight - 20;
 
-    if (scrolledIntoCard > stickyDuration) {
-        header.classList.add('unstick');
-    } else {
-        header.classList.remove('unstick');
-    }
+        if (cardContentTop <= stickyTop && cardBottom > stickyTop) {
+            // Header should be stuck
+            if (!header.classList.contains('is-stuck')) {
+                // Create placeholder to prevent layout shift
+                if (!header._placeholder) {
+                    const placeholder = document.createElement('div');
+                    placeholder.style.height = headerHeight + 'px';
+                    placeholder.className = 'sticky-placeholder';
+                    header.parentNode.insertBefore(placeholder, header);
+                    header._placeholder = placeholder;
+                }
+                header.classList.add('is-stuck');
+                header.style.left = cardRect.left + 'px';
+                header.style.width = cardRect.width + 'px';
+            } else {
+                // Update position in case of resize
+                header.style.left = cardRect.left + 'px';
+                header.style.width = cardRect.width + 'px';
+            }
+        } else {
+            // Header should not be stuck
+            if (header.classList.contains('is-stuck')) {
+                header.classList.remove('is-stuck');
+                header.style.left = '';
+                header.style.width = '';
+                if (header._placeholder) {
+                    header._placeholder.remove();
+                    header._placeholder = null;
+                }
+            }
+        }
+    });
 }
 
 // Update UI visibility based on scroll position (show after intro screen)
@@ -221,7 +250,7 @@ function initializeIntroScreen() {
 function initializeProgressTracking() {
     window.addEventListener('scroll', updateProgressBar);
     window.addEventListener('scroll', updateUIVisibility);
-    window.addEventListener('scroll', updateMassiveCardHeader);
+    window.addEventListener('scroll', updateStickyHeaders);
     elements.progressBar.addEventListener('click', handleProgressBarClick);
     elements.progressFill.addEventListener('mousedown', (e) => {
         state.isDragging = true;
