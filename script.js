@@ -561,6 +561,57 @@ function initializeAttributionModal() {
     });
 }
 
+// Autoplay brainrot video with sound when visible
+function initializeBrainrotVideo() {
+    const video = document.getElementById('brainrot-video');
+    if (!video) return;
+
+    video.muted = true;
+    let playing = false;
+    let userHasInteracted = false;
+
+    // Track any user interaction so we know we can unmute
+    const markInteracted = () => { userHasInteracted = true; };
+    document.addEventListener('click', markInteracted, { once: true });
+    document.addEventListener('touchstart', markInteracted, { once: true });
+    document.addEventListener('scroll', markInteracted, { once: true });
+
+    function tryPlay() {
+        if (userHasInteracted) {
+            video.muted = false;
+            video.play().catch(() => {
+                // Unmuted play blocked, fall back to muted
+                video.muted = true;
+                video.play();
+            });
+        } else {
+            // No interaction yet, play muted then unmute when possible
+            video.muted = true;
+            video.play().then(() => {
+                if (userHasInteracted) video.muted = false;
+            }).catch(() => {});
+        }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !playing) {
+                playing = true;
+                tryPlay();
+            } else if (!entry.isIntersecting && playing) {
+                playing = false;
+                video.pause();
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(video);
+
+    // If already playing muted and user interacts, unmute
+    document.addEventListener('click', () => { if (playing) video.muted = false; }, { once: true });
+    document.addEventListener('touchstart', () => { if (playing) video.muted = false; }, { once: true });
+}
+
 // Initialize all components
 function init() {
     initializeCardHeights();
@@ -574,6 +625,7 @@ function init() {
     initializeStats();
     initializeAttributionModal();
     initializeIntroScreen();
+    initializeBrainrotVideo();
 }
 
 // Start the application
