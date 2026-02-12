@@ -39,7 +39,7 @@
 | 0.08 | Text | We rarely see time waste represented to scale. This is part of the reason we consistently fail to grasp just how much of our collective life is disappearing into feeds. |
 | 0.12 | Mini-card | **320,000 Hours** — Time it would take to read all of Wikipedia. Every word, every article. That's how far you've scrolled — and it's barely a fraction of what we spend in 20 seconds. |
 | 0.16 | Text | Keep scrolling. We're not even close. |
-| 0.20 | Text | You might think 320,000 hours sounds like a lot. It is. It's half a human lifetime. But we blow past it every 20 seconds without a thought. |
+| 0.20 | Text | You might think 320,000 hours sounds like a lot. It is. It's half a human lifetime. But we blow past way it every 20 seconds without a thought. |
 | 0.26 | Mini-card | **700,800 Hours** — One entire human lifetime — 80 years. Every waking moment, every sleeping one. Born, lived, died. That's how much time you've scrolled past. |
 | 0.28 | Text | One complete human life. Gone in a fraction of this scroll. |
 | 0.33 | Text | And we're not even a quarter of the way through what humanity spends in 20 seconds. |
