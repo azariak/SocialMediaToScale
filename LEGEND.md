@@ -48,7 +48,7 @@
 | 0.48 | Text | Just kidding. We're not even halfway. Keep scrolling. |
 | 0.53 | Text | The time represented by this card is consumed every 20 seconds. By the time you finish scrolling, it will have happened many times over. |
 | 0.58 | Text | No single app or platform created this problem. We did — collectively, one scroll at a time. |
-| 0.63 | Text | 2.6 million hours. That's 37 entire human lifetimes. Consumed. Every. 20. Seconds. |
+| 0.63 | Text | 2.6 million hours. That's 3.7 entire human lifetimes. Consumed. Every. 20. Seconds. |
 | 0.68 | Text | If this time were given to a single person, they would live from the Stone Age to today — and still have lifetimes to spare. |
 | 0.73 | Text | We could read every Wikipedia article four times over. We could build monuments. We could learn languages, write novels, raise families. |
 | 0.78 | Text | Instead, we scroll. |
