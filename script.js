@@ -185,11 +185,18 @@ function updateStickyHeaders() {
         if (!header) return;
 
         const cardRect = card.getBoundingClientRect();
-        const cardPadding = parseFloat(getComputedStyle(card).paddingTop) || 0;
+        const cardStyles = getComputedStyle(card);
+        const cardPaddingTop = parseFloat(cardStyles.paddingTop) || 0;
+        const cardPaddingLeft = parseFloat(cardStyles.paddingLeft) || 0;
+        const cardPaddingRight = parseFloat(cardStyles.paddingRight) || 0;
         const headerHeight = header.offsetHeight;
 
+        // Content width (excluding card padding)
+        const contentWidth = cardRect.width - cardPaddingLeft - cardPaddingRight;
+        const contentLeft = cardRect.left + cardPaddingLeft;
+
         // Top of card content area (after padding)
-        const cardContentTop = cardRect.top + cardPadding;
+        const cardContentTop = cardRect.top + cardPaddingTop;
         // Bottom of card minus header height so header doesn't overflow
         const cardBottom = cardRect.bottom - headerHeight - 20;
 
@@ -205,12 +212,12 @@ function updateStickyHeaders() {
                     header._placeholder = placeholder;
                 }
                 header.classList.add('is-stuck');
-                header.style.left = cardRect.left + 'px';
-                header.style.width = cardRect.width + 'px';
+                header.style.left = contentLeft + 'px';
+                header.style.width = contentWidth + 'px';
             } else {
                 // Update position in case of resize
-                header.style.left = cardRect.left + 'px';
-                header.style.width = cardRect.width + 'px';
+                header.style.left = contentLeft + 'px';
+                header.style.width = contentWidth + 'px';
             }
         } else {
             // Header should not be stuck
