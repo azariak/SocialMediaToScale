@@ -336,7 +336,7 @@ body {
     padding: 20px;
     padding-top: 185px;
     padding-left: 40px; /* Space for labels on left side of small units */
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* Scale row - horizontal display of small units */
@@ -397,8 +397,55 @@ body {
 
 
 /* Massive card - maintains dark aesthetic but much taller */
+/* Massive card - maintains dark aesthetic but much taller */
 .scale-card-massive {
-    /* Inherits from .milestone-card - dark background with red accents */
+    /* Inherits from .milestone-card */
+}
+
+.sticky-section {
+    overflow: visible;
+    text-align: center;
+}
+
+.sticky-section .floating-text,
+.sticky-section .mini-card,
+.sticky-section .positioned-video {
+    position: sticky !important;
+    top: 50vh !important;
+    left: auto !important;
+    transform: none !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sticky-video-wrapper {
+    position: sticky !important;
+    top: calc(50vh - 200px) !important;
+    text-align: center;
+}
+
+.sticky-video-wrapper .positioned-video {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+}
+
+.sticky-video-wrapper .media-caption-top,
+.sticky-video-wrapper .media-caption-bottom {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    display: block;
+    margin: 10px auto;
+    font-size: 14px;
+    color: #999;
+    text-align: center;
 }
 
 .milestone-card-header {
