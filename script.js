@@ -532,6 +532,16 @@ function initializeSourcesModal() {
             <div class="source-link">Source: <a href="https://www.harmonyhit.com/phone-screen-time-statistics/" target="_blank" rel="noopener noreferrer">HarmonyHit - Phone Screen Time Statistics</a></div>
         `;
         modalBody.appendChild(introSection);
+
+        // Walking to the moon source
+        const moonSection = document.createElement('div');
+        moonSection.className = 'source-item';
+        moonSection.innerHTML = `
+            <h3>Walking to the Moon</h3>
+            <p><strong>59,750 hours</strong> to walk to the moon.</p>
+            <div class="source-link">Source: <a href="https://www.reddit.com/r/theydidthemath/comments/15pllkp/comment/jvy617w/" target="_blank" rel="noopener noreferrer">r/theydidthemath - Walking to the Moon</a></div>
+        `;
+        modalBody.appendChild(moonSection);
     }
 
     // Open modal

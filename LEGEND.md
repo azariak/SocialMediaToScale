@@ -28,6 +28,7 @@
 | 0.2 | That's 8.3 years of your life... |
 | 0.5 | ...spent scrolling through feeds |
 | 0.7 | A decade of moments, lost to the algorithm |
+| 0.82 | Mini-card | **59,750 Hours** — Time it would take to walk to the moon. One foot in front of the other, non-stop, for nearly 7 years. |
 
 ---
 
