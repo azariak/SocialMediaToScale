@@ -421,19 +421,6 @@ function initializeSourcesModal() {
             modalHeader.appendChild(sourceCodeLink);
         }
 
-        // Add intro screen stat source
-        const introSection = document.createElement('div');
-        introSection.className = 'source-item';
-        introSection.innerHTML = `
-            <h3>Daily Phone Usage</h3>
-            <p>The average person spends <strong>5.27 hours</strong> on their phone every day.</p>
-            <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Calculation:</strong> 5 hours 16 minutes = 5 + (16 ÷ 60) = <strong>5.27 hours</strong>
-            </p>
-            <div class="source-link">Source: <a href="https://www.harmonyhit.com/phone-screen-time-statistics/" target="_blank" rel="noopener noreferrer">HarmonyHit - Phone Screen Time Statistics</a></div>
-        `;
-        modalBody.appendChild(introSection);
-
         // Add stats calculation section
         const statsSection = document.createElement('div');
         statsSection.className = 'source-item';
@@ -458,7 +445,7 @@ function initializeSourcesModal() {
             <h3>Card Calculations</h3>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
                 <strong>Daily social media use:</strong><br>
-                • 2.5 hours per person per day<br><br>
+                • We assume 2.5 hours per person per day<br><br>
 
                 <strong>Monthly:</strong><br>
                 • 2.5 × 30 = <strong>75 hours</strong><br><br>
@@ -467,7 +454,7 @@ function initializeSourcesModal() {
                 • 2.5 × 365 = <strong>912 hours</strong> (38 days)<br><br>
 
                 <strong>Lifetime (80 years):</strong><br>
-                • 912 × 80 = <strong>72,960 hours</strong> (8.3 years)<br><br>
+                • 2.5 × 365.25 × 80 = <strong>73,050 hours</strong> (8.3 years)<br><br>
 
                 <strong>Global usage every 10 seconds:</strong><br>
                 • 8.5 billion people × 2.5 hrs/day = 21.25 billion person-hours/day<br>
@@ -504,8 +491,11 @@ function initializeSourcesModal() {
             }
         });
 
-        // Add massive card info
+        // Add massive card info (skip 912 card)
         elements.milestoneCards.forEach(card => {
+            const hours = parseFloat(card.getAttribute('data-hours'));
+            if (hours === 912 || hours === 73050 || hours === 2459490) return;
+
             const header = card.querySelector('.milestone-card-header');
             if (!header) return;
 
@@ -524,13 +514,24 @@ function initializeSourcesModal() {
 
             if (source) {
                 content += `<div class="source-link">Source: <a href="${source}" target="_blank" rel="noopener noreferrer">${source}</a></div>`;
-            } else {
-                content += `<div class="source-link">Source: <span style="color: #555;">No source specified</span></div>`;
             }
 
             sourceItem.innerHTML = content;
             modalBody.appendChild(sourceItem);
         });
+
+        // Daily phone usage source (at bottom)
+        const introSection = document.createElement('div');
+        introSection.className = 'source-item';
+        introSection.innerHTML = `
+            <h3>Daily Phone Usage</h3>
+            <p>The average person spends <strong>5.27 hours</strong> on their phone every day.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Calculation:</strong> 5 hours 16 minutes = 5 + (16 ÷ 60) = <strong>5.27 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://www.harmonyhit.com/phone-screen-time-statistics/" target="_blank" rel="noopener noreferrer">HarmonyHit - Phone Screen Time Statistics</a></div>
+        `;
+        modalBody.appendChild(introSection);
     }
 
     // Open modal
@@ -539,6 +540,18 @@ function initializeSourcesModal() {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
+
+    // Report an error — copy email to clipboard
+    const reportErrorButton = document.getElementById('reportErrorButton');
+    if (reportErrorButton) {
+        reportErrorButton.addEventListener('click', () => {
+            navigator.clipboard.writeText('azaria.kelman@mail.utoronto.ca').then(() => {
+                const original = reportErrorButton.textContent;
+                reportErrorButton.textContent = 'Email copied!';
+                setTimeout(() => { reportErrorButton.textContent = original; }, 2000);
+            });
+        });
+    }
 
     // Close modal
     closeButton.addEventListener('click', () => {

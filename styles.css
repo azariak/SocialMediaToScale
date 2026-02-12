@@ -687,6 +687,12 @@ body {
     text-decoration: underline;
 }
 
+.footer-divider {
+    color: #666;
+    font-size: 13px;
+    margin: 0 6px;
+}
+
 .footer {
     position: fixed;
     bottom: 20px;

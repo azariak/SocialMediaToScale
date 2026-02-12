@@ -22,7 +22,7 @@
 
 ---
 
-## Card: 72,960 Hours — Lifetime social media use per person
+## Card: 73,050 Hours — Lifetime social media use per person
 | Position | Text |
 |----------|------|
 | 0.2 | That's 8.3 years of your life... |
