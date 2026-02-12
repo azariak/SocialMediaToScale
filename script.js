@@ -451,6 +451,43 @@ function initializeSourcesModal() {
         `;
         modalBody.appendChild(statsSection);
 
+        // Card calculations
+        const calcSection = document.createElement('div');
+        calcSection.className = 'source-item';
+        calcSection.innerHTML = `
+            <h3>Card Calculations</h3>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Daily social media use:</strong><br>
+                • 2.5 hours per person per day<br><br>
+
+                <strong>Monthly:</strong><br>
+                • 2.5 × 30 = <strong>75 hours</strong><br><br>
+
+                <strong>Yearly:</strong><br>
+                • 2.5 × 365 = <strong>912 hours</strong> (38 days)<br><br>
+
+                <strong>Lifetime (80 years):</strong><br>
+                • 912 × 80 = <strong>72,960 hours</strong> (8.3 years)<br><br>
+
+                <strong>Global usage every 10 seconds:</strong><br>
+                • 8.5 billion people × 2.5 hrs/day = 21.25 billion person-hours/day<br>
+                • ÷ 24 hrs/day = 885,416,667 person-hours/hr<br>
+                • ÷ 60 min/hr = 14,756,944 person-hours/min<br>
+                • ÷ 6 (ten-second blocks per minute) = <strong>2,459,490 hours per 10 seconds</strong><br><br>
+
+                <strong>Lifetimes lost per year:</strong><br>
+                • 80 years × 8,760 hrs/yr = 700,800 hrs per lifetime<br>
+                • 21.25 billion hrs/day × 365 = 7,756,250,000,000 hrs/year<br>
+                • 7,756,250,000,000 ÷ 700,800 = <strong>11,068,064 lifetimes/year</strong><br><br>
+
+                <strong>Comparison markers:</strong><br>
+                • Reading all of Wikipedia: ~320,000 hours (0.46 lifetimes)<br>
+                • One human lifetime (80 years): 700,800 hours<br>
+                • Lifetimes per 10 seconds: 2,459,490 ÷ 700,800 ≈ <strong>3.5 lifetimes</strong>
+            </p>
+        `;
+        modalBody.appendChild(calcSection);
+
         // Add scale units info
         const scaleUnits = document.querySelectorAll('.scale-unit');
         scaleUnits.forEach(unit => {
