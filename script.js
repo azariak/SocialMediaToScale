@@ -150,7 +150,7 @@ function updateProgressBar() {
             const years = currentHours / 8760;
             displayText = `${years.toFixed(1)} yrs`;
         } else if (currentHours < 1000000000) {
-            displayText = `${(currentHours / 1000000).toFixed(1)}M hrs`;
+            displayText = `${(currentHours / 1000000).toFixed(2)}M hrs`;
         } else {
             displayText = `${(currentHours / 1000000000).toFixed(1)}B hrs`;
         }
