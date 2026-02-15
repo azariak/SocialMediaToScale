@@ -333,6 +333,53 @@ body {
     }
 }
 
+.stats-explainer {
+    position: fixed;
+    top: 155px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px 16px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.stats-explainer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.explainer-line {
+    width: 1px;
+    height: 24px;
+    background: #444;
+    margin-bottom: 10px;
+}
+
+.explainer-text {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+    .stats-explainer {
+        top: 158px;
+    }
+
+    .explainer-text {
+        font-size: 12px;
+        max-width: 280px;
+    }
+}
+
 .gate-section {
     height: 100vh;
     display: flex;

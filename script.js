@@ -19,6 +19,7 @@ const elements = {
     statsBar: document.querySelector('.stats-bar'),
     scrollIndicator: document.querySelector('.scroll-indicator'),
     gateSection: document.querySelector('.gate-section'),
+    statsExplainer: document.querySelector('.stats-explainer'),
     feed: document.querySelector('.feed'),
     scaleLabel: document.querySelector('.scale-label')
 };
@@ -254,6 +255,13 @@ function updateUIVisibility() {
 
     if (elements.gateSection) {
         elements.gateSection.classList.toggle('visible', isPassedIntro);
+    }
+
+    // Show explainer after intro, hide once feed (squares) is reached
+    if (elements.statsExplainer) {
+        const feedTop = elements.feed ? elements.feed.offsetTop : 0;
+        const isBeforeFeed = window.scrollY < feedTop - window.innerHeight * 0.5;
+        elements.statsExplainer.classList.toggle('visible', isPassedIntro && isBeforeFeed);
     }
 }
 
