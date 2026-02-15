@@ -333,6 +333,42 @@ body {
     }
 }
 
+.gate-section {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.gate-section.visible {
+    opacity: 1;
+}
+
+.gate-text {
+    font-size: 20px;
+    color: #888;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.gate-arrow {
+    margin-top: 40px;
+    font-size: 24px;
+    color: #444;
+    animation: bounce 2s infinite;
+}
+
+@media (max-width: 640px) {
+    .gate-text {
+        font-size: 17px;
+    }
+}
+
 .feed {
     max-width: 600px;
     margin: 0 auto;

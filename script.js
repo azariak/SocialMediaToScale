@@ -18,6 +18,7 @@ const elements = {
     header: document.querySelector('.header'),
     statsBar: document.querySelector('.stats-bar'),
     scrollIndicator: document.querySelector('.scroll-indicator'),
+    gateSection: document.querySelector('.gate-section'),
     feed: document.querySelector('.feed'),
     scaleLabel: document.querySelector('.scale-label')
 };
@@ -132,10 +133,18 @@ function updateProgressBar() {
     const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     elements.progressFill.style.height = `${scrollPercent}%`;
 
-    // Update scale label
+    // Update scale label — hours start at 0 when user reaches the feed (squares)
     if (elements.scaleLabel) {
+        const feedTop = elements.feed ? elements.feed.offsetTop : 0;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const feedStartPercent = feedTop / maxScroll;
         const totalHours = getTotalHours();
-        const currentHours = (scrollPercent / 100) * totalHours;
+
+        let currentHours = 0;
+        if (scrollPercent / 100 > feedStartPercent) {
+            const feedProgress = (scrollPercent / 100 - feedStartPercent) / (1 - feedStartPercent);
+            currentHours = feedProgress * totalHours;
+        }
 
         // Format hours display with appropriate units
         let displayText;
@@ -242,6 +251,10 @@ function updateUIVisibility() {
     elements.header.classList.toggle('ui-visible', isPassedIntro);
     elements.statsBar.classList.toggle('ui-visible', isPassedIntro);
     elements.progressBar.classList.toggle('ui-visible', isPassedIntro);
+
+    if (elements.gateSection) {
+        elements.gateSection.classList.toggle('visible', isPassedIntro);
+    }
 }
 
 // Initialize intro screen scroll arrow click
