@@ -259,9 +259,9 @@ function updateUIVisibility() {
 
 // Initialize intro screen scroll arrow click
 function initializeIntroScreen() {
-    if (elements.scrollIndicator && elements.feed) {
+    if (elements.scrollIndicator && elements.gateSection) {
         elements.scrollIndicator.addEventListener('click', () => {
-            elements.feed.scrollIntoView({ behavior: 'smooth' });
+            elements.gateSection.scrollIntoView({ behavior: 'smooth' });
         });
     }
 }

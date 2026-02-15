@@ -334,10 +334,10 @@ body {
 }
 
 .gate-section {
-    height: 60vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     text-align: center;
     padding: 40px 20px;
@@ -357,10 +357,10 @@ body {
 }
 
 .gate-arrow {
-    margin-top: 40px;
-    font-size: 24px;
+    font-size: 18px;
     color: #444;
     animation: bounce 2s infinite;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 640px) {
