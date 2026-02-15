@@ -361,6 +361,10 @@ body {
     color: #444;
     animation: bounce 2s infinite;
     margin-bottom: 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 640px) {

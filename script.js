@@ -264,6 +264,14 @@ function initializeIntroScreen() {
             elements.gateSection.scrollIntoView({ behavior: 'smooth' });
         });
     }
+
+    // Gate arrow scrolls to the feed (squares)
+    const gateArrow = document.querySelector('.gate-arrow');
+    if (gateArrow && elements.feed) {
+        gateArrow.addEventListener('click', () => {
+            elements.feed.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
 }
 
 // Initialize progress bar interactions
