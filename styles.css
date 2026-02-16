@@ -425,7 +425,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 231px;
+    padding-top: 361px;
     padding-left: 40px; /* Space for labels on left side of small units */
     overflow-x: clip;
 }
@@ -985,7 +985,7 @@ body {
     .feed {
         padding: 10px 20px;
         max-width: 90%;
-        padding-top: 219px;
+        padding-top: 343px;
         padding-left: 20px;
     }
 
