@@ -170,19 +170,22 @@ function updateProgressBar() {
     }
 }
 
+// Calculate scroll position from a click/drag Y coordinate on the progress bar
+function getScrollFromBarY(clientY) {
+    const barRect = elements.progressBar.getBoundingClientRect();
+    const percent = Math.max(0, Math.min(1, (clientY - barRect.top) / barRect.height));
+    return percent * (document.body.scrollHeight - window.innerHeight);
+}
+
 // Handle progress bar click to jump to position
 function handleProgressBarClick(e) {
-    const percent = e.clientY / window.innerHeight;
-    const scrollTo = percent * (document.body.scrollHeight - window.innerHeight);
-    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+    window.scrollTo({ top: getScrollFromBarY(e.clientY), behavior: 'smooth' });
 }
 
 // Handle progress bar drag functionality
 function handleProgressBarDrag(e) {
     if (state.isDragging) {
-        const percent = e.clientY / window.innerHeight;
-        const scrollTo = percent * (document.body.scrollHeight - window.innerHeight);
-        window.scrollTo({ top: scrollTo });
+        window.scrollTo({ top: getScrollFromBarY(e.clientY) });
     }
 }
 
