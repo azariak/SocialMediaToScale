@@ -425,7 +425,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 185px;
+    padding-top: 231px;
     padding-left: 40px; /* Space for labels on left side of small units */
     overflow-x: clip;
 }
@@ -462,6 +462,29 @@ body {
     font-size: 20px;
     color: #888;
     margin-bottom: 4px;
+}
+
+.scale-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -40px;
+    margin-bottom: 60px;
+}
+
+.scale-note-line {
+    width: 1px;
+    height: 24px;
+    background: #444;
+    margin-bottom: 10px;
+}
+
+.scale-note-text {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.5;
 }
 
 /* Scale units - small red squares representing hours (1 hour = 1 pixel) */
@@ -960,7 +983,7 @@ body {
     .feed {
         padding: 10px 20px;
         max-width: 90%;
-        padding-top: 175px;
+        padding-top: 219px;
         padding-left: 20px;
     }
 
@@ -992,6 +1015,11 @@ body {
 
     .scale-desc {
         font-size: 12px;
+    }
+
+    .scale-note-text {
+        font-size: 12px;
+        max-width: 280px;
     }
 
 }
