@@ -448,13 +448,13 @@ body {
 .scale-value {
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #ff4444;
     margin-bottom: 4px;
 }
 
 .scale-desc {
     font-size: 14px;
-    color: #888;
+    color: #aaa;
     margin-bottom: 8px;
 }
 
@@ -487,9 +487,11 @@ body {
     line-height: 1.5;
 }
 
-/* Scale units - small red squares representing hours (1 hour = 1 pixel) */
+/* Scale units - small squares representing hours (1 hour = 1 pixel) */
 .scale-unit {
-    background: #ff4444;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
     position: relative;
     min-width: 1px;
     min-height: 1px;
