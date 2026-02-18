@@ -540,6 +540,25 @@ body {
     box-sizing: border-box;
 }
 
+.milestone-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 19px,
+        #333 19px,
+        #333 20px
+    );
+    border-radius: 12px 0 0 12px;
+    pointer-events: none;
+    z-index: 1;
+}
+
 
 /* Massive card - maintains dark aesthetic but much taller */
 /* Massive card - maintains dark aesthetic but much taller */
