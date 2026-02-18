@@ -105,18 +105,52 @@ function initializeFloatingText() {
     });
 }
 
-// Create progress markers for each milestone
+// Create progress markers for each milestone + year tick marks
 function initializeProgressMarkers() {
     setTimeout(() => {
+        const totalScrollHeight = document.body.scrollHeight;
+        const feedTop = elements.feed ? elements.feed.offsetTop : 0;
+        const totalHours = getTotalHours();
+        const hoursPerYear = 8760;
+
+        // Major ticks at each milestone card
         elements.milestoneCards.forEach(card => {
             const marker = document.createElement('div');
             marker.className = 'progress-marker';
             const header = card.querySelector('.milestone-card-header');
             const offset = card.offsetTop + (header ? header.offsetTop : 40);
-            const percent = (offset / document.body.scrollHeight) * 100;
+            const percent = (offset / totalScrollHeight) * 100;
             marker.style.top = `${percent}%`;
             elements.progressBar.appendChild(marker);
         });
+
+        // Minor ticks at each year interval
+        // Map hours to scroll position: hours are distributed proportionally across the feed area
+        const feedBottom = totalScrollHeight; // feed extends to end
+        const feedHeight = feedBottom - feedTop;
+
+        for (let year = 25; year * hoursPerYear < totalHours; year += 25) {
+            const hoursFraction = (year * hoursPerYear) / totalHours;
+            const scrollOffset = feedTop + hoursFraction * feedHeight;
+            const percent = (scrollOffset / totalScrollHeight) * 100;
+
+            if (percent > 0 && percent < 100) {
+                const isMajor = year % 50 === 0;
+                const tick = document.createElement('div');
+                tick.className = isMajor ? 'progress-marker-year-major' : 'progress-marker-year';
+                tick.style.top = `${percent}%`;
+                elements.progressBar.appendChild(tick);
+
+                // Add label at every 50-year tick
+                if (isMajor) {
+                    const label = document.createElement('span');
+                    label.className = 'progress-marker-year-label';
+                    label.textContent = `${year}y`;
+                    label.style.top = `${percent}%`;
+                    elements.progressBar.appendChild(label);
+                }
+            }
+        }
     }, 100);
 }
 
@@ -156,13 +190,9 @@ function updateProgressBar() {
         } else if (currentHours < 8760) { // Less than a year
             const days = currentHours / 24;
             displayText = `${days.toFixed(0)} days`;
-        } else if (currentHours < 1000000) {
+        } else {
             const years = currentHours / 8760;
             displayText = `${years.toFixed(1)} yrs`;
-        } else if (currentHours < 1000000000) {
-            displayText = `${(currentHours / 1000000).toFixed(2)}M hrs`;
-        } else {
-            displayText = `${(currentHours / 1000000000).toFixed(1)}B hrs`;
         }
 
         elements.scaleLabel.textContent = displayText;
@@ -714,7 +744,7 @@ function initializeBrainrotVideo() {
 // Convert tall cards from absolute positioning to normal flow with sticky elements
 function initializeStickyFloating() {
     const MIN_CARD_HEIGHT = 5000; // Only convert cards taller than this
-    const STICKY_DISTANCE = 3000; // ~5 seconds of scrolling
+    const STICKY_DISTANCE = 5000; // ~8 seconds of scrolling
 
     document.querySelectorAll('.milestone-card').forEach(card => {
         if (card.offsetHeight < MIN_CARD_HEIGHT) return;
