@@ -349,6 +349,27 @@ function initializeIntroScreen() {
     }
 }
 
+// Bounce back to end screen when user scrolls past the bottom
+function initializeEndBounce() {
+    const endScreen = document.querySelector('.end-screen');
+    if (!endScreen) return;
+
+    let bounceTimeout = null;
+
+    window.addEventListener('scroll', () => {
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+        // Only trigger when user hits the very bottom
+        if (window.scrollY >= maxScroll - 5) {
+            if (bounceTimeout) clearTimeout(bounceTimeout);
+            bounceTimeout = setTimeout(() => {
+                // Bounce above the end-screen
+                window.scrollTo({ top: endScreen.offsetTop - window.innerHeight * 0.9, behavior: 'smooth' });
+            }, 200);
+        }
+    });
+}
+
 // Initialize progress bar interactions
 function initializeProgressTracking() {
     window.addEventListener('scroll', updateProgressBar);
@@ -885,6 +906,7 @@ function init() {
     initializeIntroScreen();
     initializeBrainrotVideo();
     initializeStickyFloating();
+    initializeEndBounce();
 }
 
 // Start the application

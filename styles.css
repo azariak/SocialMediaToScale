@@ -827,13 +827,13 @@ body {
 }
 
 .bottom-footer {
-    padding: 8px 20px 40px;
+    padding: 8px 20px 500px;
     text-align: center;
 }
 
 @media (max-width: 640px) {
     .bottom-footer {
-        padding-bottom: 180px;
+        padding-bottom: 600px;
     }
 }
 
