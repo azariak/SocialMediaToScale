@@ -192,8 +192,9 @@ function updateProgressBar() {
         const barHeight = Math.min(maxBarHeight, fullBarHeight);
         elements.progressBar.style.height = barHeight + 'px';
 
-        // Hide scale label + year labels when bar is fully collapsed
+        // Hide entire progress bar when fully collapsed
         const isCollapsed = barHeight <= 0;
+        elements.progressBar.style.display = isCollapsed ? 'none' : '';
         if (elements.scaleLabel) {
             elements.scaleLabel.style.display = isCollapsed ? 'none' : '';
         }
@@ -319,8 +320,12 @@ function updateUIVisibility() {
     const feedTop = elements.feed ? elements.feed.offsetTop : 0;
     const isAtFeed = window.scrollY > feedTop + window.innerHeight * 0.1;
 
+    // Hide stats bar once nearing end of last milestone card (but keep header and scrollbar unchanged)
+    const lastCard = elements.milestoneCards[elements.milestoneCards.length - 1];
+    const isPastLastCard = lastCard && window.scrollY > lastCard.offsetTop + lastCard.offsetHeight - window.innerHeight * 0.2;
+
     elements.header.classList.toggle('ui-visible', isPassedIntro);
-    elements.statsBar.classList.toggle('ui-visible', isPassedIntro);
+    elements.statsBar.classList.toggle('ui-visible', isPassedIntro && !isPastLastCard);
     elements.progressBar.classList.toggle('ui-visible', isAtFeed);
 
     if (elements.gateSection) {
