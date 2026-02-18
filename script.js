@@ -852,7 +852,9 @@ function initializeStickyFloating() {
             section.className = 'sticky-section';
 
             // Section height = distance to next element's position, or STICKY_DISTANCE for last
-            const nextTop = (i < items.length - 1) ? items[i + 1].top : item.top + STICKY_DISTANCE;
+            // Give the last element extra sticky time so it doesn't disappear too quickly
+            const lastBonus = (i === items.length - 1) ? STICKY_DISTANCE : 0;
+            const nextTop = (i < items.length - 1) ? items[i + 1].top : item.top + STICKY_DISTANCE + lastBonus;
             const sectionHeight = Math.max(STICKY_DISTANCE, nextTop - item.top);
             section.style.height = sectionHeight + 'px';
 
