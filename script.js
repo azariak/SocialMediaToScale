@@ -545,32 +545,42 @@ function initializeSourcesModal() {
             modalHeader.appendChild(sourceCodeLink);
         }
 
-        // Add stats calculation section
+        // 1. Lives Lost Calculation (stats bar)
         const statsSection = document.createElement('div');
         statsSection.className = 'source-item';
         statsSection.innerHTML = `
             <h3>Lives Lost Calculation</h3>
             <p>The world collectively spends <strong>11.5 billion hours</strong> on social media platforms daily.</p>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Calculation:</strong><br>
+                <strong>Calculation for lives lost:</strong><br>
                 • 80 years in hours: 700,800<br>
                 • 11.5 billion ÷ 700,800 = 16,409.82 lives lost per day<br>
                 • Seconds in 24 hours: 86,400<br>
                 • 16,409.82 ÷ 86,400 = <strong>0.18992 lives lost per second</strong>
             </p>
-            <div class="source-link">Source: <a href="https://umaine.edu/undiscoveredmaine/small-business/resources/marketing-for-small-business/social-media-tools/social-media-statistics-details/" target="_blank" rel="noopener noreferrer">University of Maine - Social Media Statistics</a></div>
+            <div class="source-link">Source: <a href="https://umaine.edu/undiscoveredmaine/small-business/resources/marketing-for-small-business/social-media-tools/social-media-statistics-details/" target="_blank" rel="noopener noreferrer">University of Maine — Social Media Statistics</a></div>
         `;
         modalBody.appendChild(statsSection);
 
-        // Card calculations
+        // 2. Daily Social Media Use — 2.5 hrs/day (intro screen)
+        const dailySocialSection = document.createElement('div');
+        dailySocialSection.className = 'source-item';
+        dailySocialSection.innerHTML = `
+            <h3>Daily Social Media Use — 2.5 Hours</h3>
+            <p>We use <strong>2.5 hours per person per day</strong> as our baseline. Statista (2025) puts the global average at approximately 2 hours 21 minutes.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Assumption:</strong> 2.5 hrs/day is used as a round, commonly cited figure throughout all derived calculations.
+            </p>
+            <div class="source-link">Source: <a href="https://www.statista.com/statistics/433871/daily-social-media-usage-worldwide/" target="_blank" rel="noopener noreferrer">Statista — Daily social media usage worldwide</a></div>
+        `;
+        modalBody.appendChild(dailySocialSection);
+
+        // 3. Card Calculations (yearly, lifetime, global 10 sec)
         const calcSection = document.createElement('div');
         calcSection.className = 'source-item';
         calcSection.innerHTML = `
             <h3>Card Calculations</h3>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Daily social media use:</strong><br>
-                • We assume 2.5 hours per person per day<br><br>
-
                 <strong>Monthly:</strong><br>
                 • 2.5 × 30 = <strong>75 hours</strong><br><br>
 
@@ -578,10 +588,11 @@ function initializeSourcesModal() {
                 • 2.5 × 365 = <strong>912 hours</strong> (38 days)<br><br>
 
                 <strong>Lifetime (80 years):</strong><br>
+                • Assumes 2.5 hrs/day usage across a full 80-year lifespan<br>
                 • 2.5 × 365.25 × 80 = <strong>73,050 hours</strong> (8.3 years)<br><br>
 
                 <strong>Global usage every 10 seconds:</strong><br>
-                • 8.5 billion people × 2.5 hrs/day = 21.25 billion person-hours/day<br>
+                • 8.5 billion users (approximate) × 2.5 hrs/day = 21.25 billion person-hours/day<br>
                 • ÷ 24 hrs/day = 885,416,667 person-hours/hr<br>
                 • ÷ 60 min/hr = 14,756,944 person-hours/min<br>
                 • ÷ 6 (ten-second blocks per minute) = <strong>2,459,490 hours per 10 seconds</strong><br><br>
@@ -592,96 +603,105 @@ function initializeSourcesModal() {
                 • 7,756,250,000,000 ÷ 700,800 = <strong>11,068,064 lifetimes/year</strong><br><br>
 
                 <strong>Comparison markers:</strong><br>
-                • Reading all of Wikipedia: ~320,000 hours (0.46 lifetimes)<br>
+                • Reading all of Wikipedia: ~340,000 hours (0.49 lifetimes)<br>
                 • One human lifetime (80 years): 700,800 hours<br>
                 • Lifetimes per 10 seconds: 2,459,490 ÷ 700,800 ≈ <strong>3.5 lifetimes</strong>
             </p>
         `;
         modalBody.appendChild(calcSection);
 
-        // Add scale units info
-        const scaleUnits = document.querySelectorAll('.scale-unit');
-        scaleUnits.forEach(unit => {
-            const hours = unit.getAttribute('data-hours');
-            const label = unit.querySelector('.scale-label-inline');
-            if (label) {
-                const sourceItem = document.createElement('div');
-                sourceItem.className = 'source-item';
-                sourceItem.innerHTML = `
-                    <h3>${hours} Hour${hours !== '1' ? 's' : ''}</h3>
-                    <p>Visual scale unit (1 hour = 1 pixel)</p>
-                `;
-                modalBody.appendChild(sourceItem);
-            }
-        });
-
-        // Add massive card info (skip 912 card)
-        elements.milestoneCards.forEach(card => {
-            const hours = parseFloat(card.getAttribute('data-hours'));
-            if (hours === 912 || hours === 73050 || hours === 2459490) return;
-
-            const header = card.querySelector('.milestone-card-header');
-            if (!header) return;
-
-            const title = header.querySelector('h2')?.textContent || '';
-            const description = header.querySelector('p')?.textContent || '';
-            const source = card.getAttribute('data-source') || '';
-
-            const sourceItem = document.createElement('div');
-            sourceItem.className = 'source-item';
-
-            let content = `<h3>${title}</h3>`;
-
-            if (description) {
-                content += `<p>${description}</p>`;
-            }
-
-            if (source) {
-                content += `<div class="source-link">Source: <a href="${source}" target="_blank" rel="noopener noreferrer">${source}</a></div>`;
-            }
-
-            sourceItem.innerHTML = content;
-            modalBody.appendChild(sourceItem);
-        });
-
-        // Daily phone usage source (at bottom)
-        const introSection = document.createElement('div');
-        introSection.className = 'source-item';
-        introSection.innerHTML = `
-            <h3>Daily Phone Usage</h3>
-            <p>The average person spends <strong>5.27 hours</strong> on their phone every day.</p>
-            <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Calculation:</strong> 5 hours 16 minutes = 5 + (16 ÷ 60) = <strong>5.27 hours</strong>
-            </p>
-            <div class="source-link">Source: <a href="https://www.harmonyhit.com/phone-screen-time-statistics/" target="_blank" rel="noopener noreferrer">HarmonyHit - Phone Screen Time Statistics</a></div>
-        `;
-        modalBody.appendChild(introSection);
-
-        // Walking to the moon source
+        // 4. Walking to the Moon (mini-card inside lifetime card)
         const moonSection = document.createElement('div');
         moonSection.className = 'source-item';
         moonSection.innerHTML = `
-            <h3>Walking to the Moon</h3>
-            <p><strong>59,750 hours</strong> to walk to the moon.</p>
-            <div class="source-link">Source: <a href="https://www.reddit.com/r/theydidthemath/comments/15pllkp/comment/jvy617w/" target="_blank" rel="noopener noreferrer">r/theydidthemath - Walking to the Moon</a></div>
+            <h3>Walking to the Moon — 59,750 Hours</h3>
+            <p><strong>59,750 hours</strong> to walk to the moon non-stop (approx. 6.8 years).</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Assumptions:</strong><br>
+                • Mean Earth–Moon distance: 238,855 miles<br>
+                • Walking speed: 4 mph (brisk pace; at a standard 3 mph the figure would be ~79,600 hours / ~9 years)<br><br>
+                <strong>Calculation:</strong> 238,855 ÷ 4 = <strong>59,714 hours</strong> ≈ 59,750
+            </p>
+            <div class="source-link">Source: <a href="https://www.reddit.com/r/theydidthemath/comments/15pllkp/comment/jvy617w/" target="_blank" rel="noopener noreferrer">r/theydidthemath — Walking to the Moon</a></div>
         `;
         modalBody.appendChild(moonSection);
 
-        // Voyager 1 flight time source
+        // 5. Sistine Chapel Ceiling (first mini-card in massive card)
+        const sistineSection = document.createElement('div');
+        sistineSection.className = 'source-item';
+        sistineSection.innerHTML = `
+            <h3>Sistine Chapel Ceiling — 17,520 Hours</h3>
+            <p>Michelangelo painted the Sistine Chapel ceiling from <strong>1508 to 1512</strong> — a confirmed 4-year period.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Assumption:</strong> 12 hours of work per day. No historical record establishes a precise daily schedule; this is an illustrative estimate used to produce a round figure.<br><br>
+                <strong>Calculation:</strong> 4 years × 365 days × 12 hrs/day = <strong>17,520 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://en.wikipedia.org/wiki/Sistine_Chapel_ceiling" target="_blank" rel="noopener noreferrer">Wikipedia — Sistine Chapel ceiling</a></div>
+        `;
+        modalBody.appendChild(sistineSection);
+
+        // 6. Great Pyramid of Giza (second mini-card in massive card)
+        const pyramidSection = document.createElement('div');
+        pyramidSection.className = 'source-item';
+        pyramidSection.innerHTML = `
+            <h3>Great Pyramid of Giza — 175,200 Hours</h3>
+            <p>The Great Pyramid took approximately <strong>20 years</strong> to build, with an estimated 20,000 workers and 2.3 million stone blocks.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Assumptions &amp; notes:</strong><br>
+                • Construction time: 20 years (most widely cited estimate; range is roughly 10–27 years)<br>
+                • Workers: 20,000 (low end of modern scholarly estimates; current consensus leans toward 20,000–30,000+)<br>
+                • Blocks: 2.3 million (widely accepted figure)<br>
+                • The 175,200 hours represents <em>elapsed calendar time</em>, not total worker-hours<br><br>
+                <strong>Calculation:</strong> 20 × 365 × 24 = <strong>175,200 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza" target="_blank" rel="noopener noreferrer">Wikipedia — Great Pyramid of Giza</a></div>
+        `;
+        modalBody.appendChild(pyramidSection);
+
+        // 7. Reading All of Wikipedia (third mini-card in massive card)
+        const wikiSection = document.createElement('div');
+        wikiSection.className = 'source-item';
+        wikiSection.innerHTML = `
+            <h3>Reading All of Wikipedia — ~340,000 Hours</h3>
+            <p>English Wikipedia contains approximately <strong>5.1 billion words</strong> across ~7.1 million articles (as of 2025).</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Assumptions:</strong><br>
+                • Word count: ~5.1 billion words (English Wikipedia only; all-language total would be significantly higher)<br>
+                • Reading speed: 250 words per minute (commonly cited adult average)<br><br>
+                <strong>Calculation:</strong> 5,100,000,000 ÷ 250 ÷ 60 = <strong>340,000 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://en.wikipedia.org/wiki/Wikipedia:Size_of_Wikipedia" target="_blank" rel="noopener noreferrer">Wikipedia — Size of Wikipedia</a></div>
+        `;
+        modalBody.appendChild(wikiSection);
+
+        // 8. Voyager 1 Flight Time (fourth mini-card in massive card)
         const voyagerSection = document.createElement('div');
         voyagerSection.className = 'source-item';
         voyagerSection.innerHTML = `
-            <h3>Voyager 1 Flight Time</h3>
-            <p><strong>~423,000 hours</strong> of continuous flight since September 5, 1977.</p>
+            <h3>Voyager 1 Flight Time — ~423,000 Hours</h3>
+            <p><strong>~423,000 hours</strong> of continuous flight since September 5, 1977, now over 15 billion miles from Earth.</p>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
                 <strong>Calculation:</strong><br>
                 • Launched: September 5, 1977<br>
                 • As of 2025: ~48 years × 365.25 days × 24 hours ≈ 420,768 hours<br>
-                • Rounded to ~423,000 hours to account for ongoing flight
+                • Rounded to ~423,000 hours to account for ongoing flight<br>
+                • Distance: ~15.8 billion miles as of early 2026
             </p>
-            <div class="source-link">Source: <a href="https://science.nasa.gov/mission/voyager/voyager-1/" target="_blank" rel="noopener noreferrer">NASA - Voyager 1 Mission</a></div>
+            <div class="source-link">Source: <a href="https://science.nasa.gov/mission/voyager/voyager-1/" target="_blank" rel="noopener noreferrer">NASA — Voyager 1 Mission</a></div>
         `;
         modalBody.appendChild(voyagerSection);
+
+        // 9. One Human Lifetime (fifth mini-card in massive card)
+        const lifetimeSection = document.createElement('div');
+        lifetimeSection.className = 'source-item';
+        lifetimeSection.innerHTML = `
+            <h3>One Human Lifetime — 700,800 Hours</h3>
+            <p>An 80-year human lifespan equals <strong>700,800 hours</strong>.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Calculation:</strong> 80 × 365 × 24 = <strong>700,800 hours</strong>
+            </p>
+        `;
+        modalBody.appendChild(lifetimeSection);
     }
 
     // Open modal
