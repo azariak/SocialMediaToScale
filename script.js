@@ -181,6 +181,27 @@ function updateProgressBar() {
     const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     elements.progressFill.style.height = `${scrollPercent}%`;
 
+    // Clip progress bar to end at bottom of last milestone card
+    const lastCard = elements.milestoneCards[elements.milestoneCards.length - 1];
+    if (lastCard) {
+        const barTop = 175; // fixed top position of progress bar
+        const cardBottom = lastCard.offsetTop + lastCard.offsetHeight;
+        const visibleCardBottom = cardBottom - window.scrollY;
+        const maxBarHeight = Math.max(0, visibleCardBottom - barTop);
+        const fullBarHeight = window.innerHeight - barTop;
+        const barHeight = Math.min(maxBarHeight, fullBarHeight);
+        elements.progressBar.style.height = barHeight + 'px';
+
+        // Hide scale label + year labels when bar is fully collapsed
+        const isCollapsed = barHeight <= 0;
+        if (elements.scaleLabel) {
+            elements.scaleLabel.style.display = isCollapsed ? 'none' : '';
+        }
+        elements.progressBar.querySelectorAll('.progress-marker-year-label').forEach(l => {
+            l.style.display = isCollapsed ? 'none' : '';
+        });
+    }
+
     // Update scale label — hours start at 0 when user reaches the feed (squares)
     if (elements.scaleLabel) {
         const feedTop = elements.feed ? elements.feed.offsetTop : 0;
