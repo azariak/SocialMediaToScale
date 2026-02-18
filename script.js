@@ -316,9 +316,12 @@ function updateUIVisibility() {
     const introBottom = elements.introScreen ? elements.introScreen.offsetHeight : 0;
     const isPassedIntro = window.scrollY > introBottom * 0.5;
 
+    const feedTop = elements.feed ? elements.feed.offsetTop : 0;
+    const isAtFeed = window.scrollY > feedTop + window.innerHeight * 0.1;
+
     elements.header.classList.toggle('ui-visible', isPassedIntro);
     elements.statsBar.classList.toggle('ui-visible', isPassedIntro);
-    elements.progressBar.classList.toggle('ui-visible', isPassedIntro);
+    elements.progressBar.classList.toggle('ui-visible', isAtFeed);
 
     if (elements.gateSection) {
         elements.gateSection.classList.toggle('visible', isPassedIntro);
@@ -326,7 +329,6 @@ function updateUIVisibility() {
 
     // Show explainer after intro, hide once feed (squares) is reached
     if (elements.statsExplainer) {
-        const feedTop = elements.feed ? elements.feed.offsetTop : 0;
         const isBeforeFeed = window.scrollY < feedTop - window.innerHeight * 0.5;
         elements.statsExplainer.classList.toggle('visible', isPassedIntro && isBeforeFeed);
     }
