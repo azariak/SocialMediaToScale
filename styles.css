@@ -191,6 +191,9 @@ body {
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
     transition: top 0.1s ease;
+    background: #000;
+    padding: 1px 4px;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {
