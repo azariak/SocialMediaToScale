@@ -58,6 +58,19 @@ function initializeCardHeights() {
             card.style.height = `${height}px`;
         }
     });
+
+    // Size mini cards proportionally to their parent milestone card
+    document.querySelectorAll('.mini-card[data-hours]').forEach(miniCard => {
+        const hours = parseFloat(miniCard.getAttribute('data-hours'));
+        const parentCard = miniCard.closest('.milestone-card');
+        if (!hours || !parentCard) return;
+        const parentHours = parseFloat(parentCard.getAttribute('data-hours'));
+        if (!parentHours) return;
+        // Mini card height = same fraction of parent card height as hours fraction
+        const parentHeight = parentCard.offsetHeight;
+        const miniHeight = (hours / parentHours) * parentHeight;
+        miniCard.style.height = `${Math.max(miniHeight, 60)}px`; // min 60px for readability
+    });
 }
 
 // Position floating text, mini-cards, images, and videos based on their data-position attribute
@@ -604,6 +617,22 @@ function initializeSourcesModal() {
             <div class="source-link">Source: <a href="https://www.reddit.com/r/theydidthemath/comments/15pllkp/comment/jvy617w/" target="_blank" rel="noopener noreferrer">r/theydidthemath - Walking to the Moon</a></div>
         `;
         modalBody.appendChild(moonSection);
+
+        // Voyager 1 flight time source
+        const voyagerSection = document.createElement('div');
+        voyagerSection.className = 'source-item';
+        voyagerSection.innerHTML = `
+            <h3>Voyager 1 Flight Time</h3>
+            <p><strong>~423,000 hours</strong> of continuous flight since September 5, 1977.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Calculation:</strong><br>
+                • Launched: September 5, 1977<br>
+                • As of 2025: ~48 years × 365.25 days × 24 hours ≈ 420,768 hours<br>
+                • Rounded to ~423,000 hours to account for ongoing flight
+            </p>
+            <div class="source-link">Source: <a href="https://science.nasa.gov/mission/voyager/voyager-1/" target="_blank" rel="noopener noreferrer">NASA - Voyager 1 Mission</a></div>
+        `;
+        modalBody.appendChild(voyagerSection);
     }
 
     // Open modal
