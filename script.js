@@ -592,20 +592,20 @@ function initializeSourcesModal() {
                 • 2.5 × 365.25 × 80 = <strong>73,050 hours</strong> (8.3 years)<br><br>
 
                 <strong>Global usage every 10 seconds:</strong><br>
-                • 8.5 billion users (approximate) × 2.5 hrs/day = 21.25 billion person-hours/day<br>
-                • ÷ 24 hrs/day = 885,416,667 person-hours/hr<br>
-                • ÷ 60 min/hr = 14,756,944 person-hours/min<br>
-                • ÷ 6 (ten-second blocks per minute) = <strong>2,459,490 hours per 10 seconds</strong><br><br>
+                • 6 billion social media users × 2.5 hrs/day = 15 billion person-hours/day<br>
+                • ÷ 24 hrs/day = 625,000,000 person-hours/hr<br>
+                • ÷ 60 min/hr = 10,416,667 person-hours/min<br>
+                • ÷ 6 (ten-second blocks per minute) = <strong>1,736,111 hours per 10 seconds</strong><br><br>
 
                 <strong>Lifetimes lost per year:</strong><br>
                 • 80 years × 8,760 hrs/yr = 700,800 hrs per lifetime<br>
-                • 21.25 billion hrs/day × 365 = 7,756,250,000,000 hrs/year<br>
-                • 7,756,250,000,000 ÷ 700,800 = <strong>11,068,064 lifetimes/year</strong><br><br>
+                • 15 billion hrs/day × 365 = 5,475,000,000,000 hrs/year<br>
+                • 5,475,000,000,000 ÷ 700,800 = <strong>7,812,500 lifetimes/year</strong><br><br>
 
                 <strong>Comparison markers:</strong><br>
                 • Reading all of Wikipedia: ~340,000 hours (0.49 lifetimes)<br>
                 • One human lifetime (80 years): 700,800 hours<br>
-                • Lifetimes per 10 seconds: 2,459,490 ÷ 700,800 ≈ <strong>3.5 lifetimes</strong>
+                • Lifetimes per 10 seconds: 1,736,111 ÷ 700,800 ≈ <strong>2.5 lifetimes</strong>
             </p>
         `;
         modalBody.appendChild(calcSection);
