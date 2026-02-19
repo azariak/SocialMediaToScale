@@ -402,6 +402,14 @@ body {
     line-height: 1.5;
 }
 
+.explainer-subtext {
+    font-size: 11px;
+    color: #444;
+    text-align: center;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+}
+
 @media (max-width: 640px) {
     .stats-explainer {
         top: 158px;
