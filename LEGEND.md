@@ -43,7 +43,7 @@
 | 0.13 | Mini-card | **~340,000 Hours** — Time it would take to read all of Wikipedia. Every word, every article. That's how far you've scrolled — and it's barely a fraction of what we spend in 10 seconds. |
 | 0.172 | Mini-card | **~423,000 Hours** — Voyager 1's flight time since 1977. Still transmitting from over 15 billion miles away, 48 years and counting. The farthest human-made object from Earth — and it wouldn't even fill a quarter of this card. |
 | 0.22 | Text | Keep scrolling. We're not even close. |
-| 0.285 | Mini-card | **700,800 Hours** — One entire human lifetime — 80 years. Every waking moment, every sleeping one. Born, lived, died. That's how much time you've scrolled past. |
+| 0.285 | Mini-card | **700,800 Hours** — One entire human lifetime — 80 years. Every waking moment, every sleeping one. Birth, life, death. That's how much time you've scrolled past. |
 | 0.37 | Text | And every single mini card you just passed — the Pyramids, Wikipedia, a human lifetime, Voyager 1 — together, they nearly fill this entire card. |
 | 0.47 | Text | OK, we're coming up on the end now. |
 | 0.52 | Text | Just kidding. We're not even halfway. Keep scrolling. |
