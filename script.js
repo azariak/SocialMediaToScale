@@ -483,6 +483,11 @@ function updateStatsDisplay() {
     statYear.textContent = formatStatNumber(livesThisYear, 2);
     statToday.textContent = formatStatNumber(livesToday, 2);
     statSince.textContent = formatStatNumber(livesSinceLoad, 4);
+
+    const mini1 = document.getElementById('livesMiniCount1');
+    const mini2 = document.getElementById('livesMiniCount2');
+    if (mini1) mini1.textContent = formatStatNumber(livesSinceLoad, 1);
+    if (mini2) mini2.textContent = formatStatNumber(livesSinceLoad, 1);
 }
 
 // Initialize stats tracking

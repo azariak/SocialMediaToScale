@@ -702,6 +702,27 @@ body {
     color: #888;
 }
 
+.lives-card {
+    max-width: 500px;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.lives-card h3 {
+    font-size: 72px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.lives-card p {
+    font-size: 15px;
+    color: #666;
+    letter-spacing: 0.02em;
+}
+
 .floating-text {
     position: absolute;
     left: 50%;

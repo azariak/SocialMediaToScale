@@ -87,28 +87,23 @@
     </div>
 
     <div class="feed">
+        <!-- COMMENTED OUT: scale row, scale note, and yearly card (kept for reference)
         <div class="scale-row">
-            <!-- Daily social media use: 2.5 hours -->
             <div class="scale-item">
                 <span class="scale-value">2.5 hrs</span>
                 <span class="scale-desc">Daily social media</span>
                 <div class="scale-unit" data-hours="2.5"></div>
             </div>
-
-            <!-- Monthly social media use: 75 hours -->
             <div class="scale-item">
                 <span class="scale-value">75 hrs</span>
                 <span class="scale-desc">Monthly social media</span>
                 <div class="scale-unit" data-hours="75"></div>
             </div>
         </div>
-
         <div class="scale-note">
             <div class="scale-note-line"></div>
             <p class="scale-note-text">Everything is to scale</p>
         </div>
-
-        <!-- Yearly social media use per person: ~912 hours -->
         <div class="milestone-card" data-hours="912">
             <div class="milestone-card-header">
                 <h2>912 Hours</h2>
@@ -119,6 +114,7 @@
                 <span class="floating-text" data-position="0.6">...spent scrolling</span>
             </div>
         </div>
+        END COMMENT -->
 
         <!-- Lifetime social media use per person: 73,050 hours (2.5 × 365.25 × 80) -->
         <div class="milestone-card" data-hours="73050">
@@ -128,8 +124,13 @@
             </div>
             
             <div class="milestone-card-body">
+                <div class="mini-card lives-card" data-position="0.05" id="livesMiniCard1">
+                    <h3><span id="livesMiniCount1">0</span></h3>
+                    <p>lives lost to scrolling since you arrived</p>
+                </div>
+
                 <span class="floating-text" data-position="0.2">That's 8.3 years of your life...</span>
-                <span class="floating-text" data-position="0.5">...spent scrolling through feeds</span>
+
                 <span class="floating-text" data-position="0.7">A decade of moments, lost to the algorithm</span>
 
                 <div class="mini-card" data-position="0.82" data-hours="59750">
@@ -200,6 +201,11 @@
                 </video>
 
                 <span class="floating-text" data-position="0.98">The scroll is endless — your time isn't.</span>
+
+                <div class="mini-card lives-card" data-position="0.993" id="livesMiniCard2">
+                    <h3><span id="livesMiniCount2">0</span></h3>
+                    <p>lives lost to scrolling since you opened this page</p>
+                </div>
             </div>
         </div>
 
