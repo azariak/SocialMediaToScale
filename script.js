@@ -184,7 +184,7 @@ function updateProgressBar() {
     // Clip progress bar to end at bottom of last milestone card
     const lastCard = elements.milestoneCards[elements.milestoneCards.length - 1];
     if (lastCard) {
-        const barTop = 175; // fixed top position of progress bar
+        const barTop = 110; // fixed top position of progress bar
         const cardBottom = lastCard.offsetTop + lastCard.offsetHeight;
         const visibleCardBottom = cardBottom - window.scrollY;
         const maxBarHeight = Math.max(0, visibleCardBottom - barTop);
@@ -325,7 +325,7 @@ function updateUIVisibility() {
     const isPastLastCard = lastCard && window.scrollY > lastCard.offsetTop + lastCard.offsetHeight - window.innerHeight * 0.2;
 
     elements.header.classList.toggle('ui-visible', isPassedIntro);
-    elements.statsBar.classList.toggle('ui-visible', isPassedIntro && !isPastLastCard);
+    if (elements.statsBar) elements.statsBar.classList.toggle('ui-visible', isPassedIntro && !isPastLastCard);
     elements.progressBar.classList.toggle('ui-visible', isAtFeed);
 
     if (elements.gateSection) {
@@ -470,19 +470,19 @@ function formatStatNumber(num, decimals = 2) {
 
 // Update stats display
 function updateStatsDisplay() {
+    const livesSinceLoad = getSecondsSinceLoad() * LIVES_LOST_PER_SECOND;
+
     const statYear = document.getElementById('statYear');
     const statToday = document.getElementById('statToday');
     const statSince = document.getElementById('statSince');
 
-    if (!statYear || !statToday || !statSince) return;
-
-    const livesThisYear = getSecondsThisYear() * LIVES_LOST_PER_SECOND;
-    const livesToday = getSecondsToday() * LIVES_LOST_PER_SECOND;
-    const livesSinceLoad = getSecondsSinceLoad() * LIVES_LOST_PER_SECOND;
-
-    statYear.textContent = formatStatNumber(livesThisYear, 2);
-    statToday.textContent = formatStatNumber(livesToday, 2);
-    statSince.textContent = formatStatNumber(livesSinceLoad, 4);
+    if (statYear && statToday && statSince) {
+        const livesThisYear = getSecondsThisYear() * LIVES_LOST_PER_SECOND;
+        const livesToday = getSecondsToday() * LIVES_LOST_PER_SECOND;
+        statYear.textContent = formatStatNumber(livesThisYear, 2);
+        statToday.textContent = formatStatNumber(livesToday, 2);
+        statSince.textContent = formatStatNumber(livesSinceLoad, 4);
+    }
 
     const mini1 = document.getElementById('livesMiniCount1');
     const mini2 = document.getElementById('livesMiniCount2');
@@ -855,8 +855,10 @@ function initializeStickyFloating() {
         const cardBody = card.querySelector('.milestone-card-body');
         if (!cardBody) return;
 
-        // Enable sticky support on this card
-        card.style.overflow = 'visible';
+        // Enable sticky support on this card.
+        // overflow: clip clips content at the card boundary without creating a scroll container,
+        // so position: sticky still works for elements inside.
+        card.style.overflow = 'clip';
         cardBody.style.overflow = 'visible';
         cardBody.style.display = 'block';
 

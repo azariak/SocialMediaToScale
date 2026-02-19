@@ -47,6 +47,7 @@
         <p class="subtitle">Keep scrolling...</p>
     </div>
 
+    <!-- COMMENTED OUT: stats bar and explainer
     <div class="stats-bar">
         <div class="stat-item">
             <div class="stat-label">Lives scrolled since arrival</div>
@@ -65,12 +66,12 @@
             <span class="info-tooltip">One life represents 80 years of social media usage around the world</span>
         </div>
     </div>
-
     <div class="stats-explainer">
         <div class="explainer-line"></div>
         <p class="explainer-text">The world is spending lifetimes on social media every second. Here's the count.</p>
         <p class="explainer-subtext">1 life = 80 years of scrolling</p>
     </div>
+    END COMMENT -->
 
     <div class="intro-screen">
         <div class="intro-content">
@@ -82,28 +83,35 @@
         </div>
     </div>
 
+    <!-- COMMENTED OUT: gate section
     <div class="gate-section">
         <div class="gate-arrow">↓</div>
     </div>
+    END COMMENT -->
 
     <div class="feed">
-        <!-- COMMENTED OUT: scale row, scale note, and yearly card (kept for reference)
         <div class="scale-row">
+            <!-- Daily social media use: 2.5 hours -->
             <div class="scale-item">
                 <span class="scale-value">2.5 hrs</span>
                 <span class="scale-desc">Daily social media</span>
                 <div class="scale-unit" data-hours="2.5"></div>
             </div>
+
+            <!-- Monthly social media use: 75 hours -->
             <div class="scale-item">
                 <span class="scale-value">75 hrs</span>
                 <span class="scale-desc">Monthly social media</span>
                 <div class="scale-unit" data-hours="75"></div>
             </div>
         </div>
+
         <div class="scale-note">
             <div class="scale-note-line"></div>
             <p class="scale-note-text">Everything is to scale</p>
         </div>
+
+        <!-- Yearly social media use per person: ~912 hours -->
         <div class="milestone-card" data-hours="912">
             <div class="milestone-card-header">
                 <h2>912 Hours</h2>
@@ -114,7 +122,6 @@
                 <span class="floating-text" data-position="0.6">...spent scrolling</span>
             </div>
         </div>
-        END COMMENT -->
 
         <!-- Lifetime social media use per person: 73,050 hours (2.5 × 365.25 × 80) -->
         <div class="milestone-card" data-hours="73050">
@@ -124,12 +131,12 @@
             </div>
             
             <div class="milestone-card-body">
-                <div class="mini-card lives-card" data-position="0.05" id="livesMiniCard1">
-                    <h3><span id="livesMiniCount1">0</span></h3>
-                    <p>lives lost to scrolling since you arrived</p>
-                </div>
+                <span class="floating-text" data-position="0.27">That's 8.3 years of your life...</span>
 
-                <span class="floating-text" data-position="0.2">That's 8.3 years of your life...</span>
+                <div class="mini-card lives-card" data-position="0.4" id="livesMiniCard1">
+                    <h3><span id="livesMiniCount1">0</span></h3>
+                    <p>lives (80 years worth) lost globally to scrolling since the website loaded</p>
+                </div>
 
                 <span class="floating-text" data-position="0.7">A decade of moments, lost to the algorithm</span>
 
@@ -204,7 +211,7 @@
 
                 <div class="mini-card lives-card" data-position="0.993" id="livesMiniCard2">
                     <h3><span id="livesMiniCount2">0</span></h3>
-                    <p>lives lost to scrolling since you opened this page</p>
+                    <p>lives (80 years worth) lost globally to scrolling since the website loaded</p>
                 </div>
             </div>
         </div>

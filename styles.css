@@ -95,9 +95,9 @@ body {
     position: fixed;
     left: 50%;
     margin-left: -350px;
-    top: 175px;
+    top: 110px;
     width: 4px;
-    height: calc(100vh - 175px);
+    height: calc(100vh - 110px);
     background: #222;
     z-index: 1000;
     cursor: pointer;
@@ -124,8 +124,8 @@ body {
 
 @media (max-width: 640px) {
     .progress-bar {
-        top: 178px;
-        height: calc(100vh - 178px);
+        top: 110px;
+        height: calc(100vh - 110px);
     }
 }
 
@@ -574,7 +574,7 @@ body {
 /* Massive card - maintains dark aesthetic but much taller */
 /* Massive card - maintains dark aesthetic but much taller */
 .scale-card-massive {
-    /* Inherits from .milestone-card */
+    overflow: clip;
 }
 
 .sticky-section {
@@ -706,6 +706,10 @@ body {
     max-width: 500px;
     padding: 40px 30px;
     text-align: center;
+}
+
+#livesMiniCard2 {
+    transform: translate(-50%, -100%);
 }
 
 .lives-card h3 {
