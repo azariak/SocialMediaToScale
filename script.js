@@ -328,6 +328,9 @@ function updateUIVisibility() {
     if (elements.statsBar) elements.statsBar.classList.toggle('ui-visible', isPassedIntro && !isPastLastCard);
     elements.progressBar.classList.toggle('ui-visible', isAtFeed);
 
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) themeToggle.classList.toggle('visible', !isPassedIntro);
+
     if (elements.gateSection) {
         elements.gateSection.classList.toggle('visible', isPassedIntro);
     }
@@ -968,6 +971,32 @@ function init() {
     initializeBrainrotVideo();
     initializeStickyFloating();
     initializeEndBounce();
+    initializeThemeToggle();
+}
+
+function initializeThemeToggle() {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+
+    const label = btn.querySelector('.theme-toggle-label');
+
+    function applyTheme(dark) {
+        document.body.classList.toggle('dark-mode', dark);
+        if (label) label.textContent = dark ? 'Dark' : 'Light';
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    // Use saved preference, otherwise follow system preference
+    const saved = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved ? saved === 'dark' : systemDark);
+
+    // Visible immediately on load (user starts at top of page)
+    btn.classList.add('visible');
+
+    btn.addEventListener('click', () => {
+        applyTheme(!document.body.classList.contains('dark-mode'));
+    });
 }
 
 // Start the application
