@@ -760,6 +760,41 @@ body {
     clip-path: inset(0% 0 0% 0);
 }
 
+.video-replay-container {
+    position: relative;
+    display: inline-block;
+}
+
+.video-replay-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, background 0.2s ease;
+    z-index: 10;
+    line-height: 1;
+}
+
+.video-replay-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.video-replay-btn:hover {
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+}
+
 
 .media-caption-top,
 .media-caption-bottom {

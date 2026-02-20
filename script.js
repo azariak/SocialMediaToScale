@@ -842,6 +842,31 @@ function initializeBrainrotVideo() {
     // If already playing muted and user interacts, unmute
     document.addEventListener('click', () => { if (playing) video.muted = false; }, { once: true });
     document.addEventListener('touchstart', () => { if (playing) video.muted = false; }, { once: true });
+
+    // Pause at end and show a replay button
+    let replayBtn = null;
+    video.addEventListener('ended', () => {
+        playing = false;
+        // First time: wrap video in a relative container so the button can overlay it
+        if (!replayBtn) {
+            const container = document.createElement('div');
+            container.className = 'video-replay-container';
+            video.parentNode.insertBefore(container, video);
+            container.appendChild(video);
+
+            replayBtn = document.createElement('button');
+            replayBtn.className = 'video-replay-btn';
+            replayBtn.textContent = '↺';
+            replayBtn.addEventListener('click', () => {
+                video.currentTime = 0;
+                video.play().catch(() => {});
+                playing = true;
+                replayBtn.classList.remove('visible');
+            });
+            container.appendChild(replayBtn);
+        }
+        replayBtn.classList.add('visible');
+    });
 }
 
 // Convert tall cards from absolute positioning to normal flow with sticky elements
