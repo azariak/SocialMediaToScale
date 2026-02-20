@@ -344,9 +344,12 @@ function updateUIVisibility() {
 
 // Initialize intro screen scroll arrow click
 function initializeIntroScreen() {
-    if (elements.scrollIndicator && elements.gateSection) {
+    if (elements.scrollIndicator) {
         elements.scrollIndicator.addEventListener('click', () => {
-            elements.gateSection.scrollIntoView({ behavior: 'smooth' });
+            const target = elements.feed || elements.introScreen;
+            if (target) {
+                window.scrollTo({ top: target.offsetTop + window.innerHeight * 0.3, behavior: 'smooth' });
+            }
         });
     }
 

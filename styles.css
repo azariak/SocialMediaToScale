@@ -1254,8 +1254,7 @@ body.dark-mode .theme-toggle-thumb {
 .theme-toggle-label {
     font-size: 11px;
     color: var(--text-mid);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0.03em;
     font-weight: 500;
     min-width: 28px;
 }
