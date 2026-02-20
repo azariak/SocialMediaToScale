@@ -765,6 +765,7 @@ function initializeSourcesModal() {
 
 // Handle attribution modal functionality
 function initializeAttributionModal() {
+    const azariaLink = document.getElementById('azariaLink');
     const isaacLink = document.getElementById('isaacLink');
     const maxLink = document.getElementById('maxLink');
     const modal = document.getElementById('attributionModal');
@@ -786,9 +787,30 @@ function initializeAttributionModal() {
     }
 
     // Event listeners
+    if (azariaLink) azariaLink.addEventListener('click', openModal);
     isaacLink.addEventListener('click', openModal);
     maxLink.addEventListener('click', openModal);
     closeButton.addEventListener('click', closeModal);
+
+    const creditsSourcesBtn = document.getElementById('creditsSourcesBtn');
+    if (creditsSourcesBtn) {
+        creditsSourcesBtn.addEventListener('click', () => {
+            closeModal();
+            const sourcesButton = document.getElementById('sourcesButton');
+            if (sourcesButton) sourcesButton.click();
+        });
+    }
+
+    const creditsReportErrorBtn = document.getElementById('creditsReportErrorBtn');
+    if (creditsReportErrorBtn) {
+        creditsReportErrorBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('azaria.kelman@mail.utoronto.ca').then(() => {
+                const original = creditsReportErrorBtn.textContent;
+                creditsReportErrorBtn.textContent = 'Email copied!';
+                setTimeout(() => { creditsReportErrorBtn.textContent = original; }, 2000);
+            });
+        });
+    }
 
     // Close on overlay click
     modal.addEventListener('click', (e) => {

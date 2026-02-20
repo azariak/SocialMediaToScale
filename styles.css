@@ -1158,6 +1158,15 @@ body:not(.dark-mode) .grass-image {
     color: var(--accent);
 }
 
+.modal-footer {
+    padding: 14px 40px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 @media (max-width: 640px) {
     .header {
         padding: 20px 20px 30px;
