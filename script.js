@@ -494,6 +494,12 @@ function updateStatsDisplay() {
     const mini2 = document.getElementById('livesMiniCount2');
     if (mini1) mini1.textContent = formatStatNumber(livesSinceLoad, 1);
     if (mini2) mini2.textContent = formatStatNumber(livesSinceLoad, 1);
+
+    const years = Math.round(livesSinceLoad * 80);
+    const years1 = document.getElementById('livesYears1');
+    const years2 = document.getElementById('livesYears2');
+    if (years1) years1.textContent = years.toLocaleString();
+    if (years2) years2.textContent = years.toLocaleString();
 }
 
 // Initialize stats tracking
