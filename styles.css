@@ -949,6 +949,10 @@ body {
     opacity: 0.35;
 }
 
+body:not(.dark-mode) .grass-image {
+    opacity: 0.8;
+}
+
 .bottom-footer {
     padding: 8px 20px 500px;
     text-align: center;
