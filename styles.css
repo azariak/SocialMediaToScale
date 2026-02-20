@@ -147,9 +147,9 @@ body {
     position: fixed;
     left: 50%;
     margin-left: -350px;
-    top: 110px;
-    width: 4px;
-    height: calc(100vh - 110px);
+    top: 101px;
+    width: 6px;
+    height: calc(100vh - 106px);
     background: var(--bg-bar);
     z-index: 1000;
     cursor: pointer;
@@ -170,14 +170,14 @@ body {
     .progress-bar {
         left: 10px;
         margin-left: 0;
-        width: 3px;
+        width: 5px;
     }
 }
 
 @media (max-width: 640px) {
     .progress-bar {
-        top: 110px;
-        height: calc(100vh - 110px);
+        top: 106px;
+        height: calc(100vh - 106px);
     }
 }
 
@@ -594,7 +594,7 @@ body {
     border: 1px solid var(--border-main);
     border-radius: 12px;
     padding: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
