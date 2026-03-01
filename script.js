@@ -207,7 +207,7 @@ function updateProgressBar() {
     if (elements.scaleLabel) {
         const feedTop = elements.feed ? elements.feed.offsetTop : 0;
         const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const feedStartPercent = feedTop / maxScroll;
+        const feedStartPercent = (feedTop + window.innerHeight * 0.8) / maxScroll;
         const totalHours = getTotalHours();
 
         let currentHours = 0;
@@ -218,13 +218,9 @@ function updateProgressBar() {
 
         // Format hours display with appropriate units
         let displayText;
-        if (currentHours < 1) {
-            displayText = `${Math.round(currentHours * 60)} min`;
-        } else if (currentHours < 24) {
-            displayText = `${currentHours.toFixed(1)} hrs`;
-        } else if (currentHours < 8760) { // Less than a year
-            const days = currentHours / 24;
-            displayText = `${days.toFixed(0)} days`;
+        if (currentHours < 8760) {
+            const days = Math.round(currentHours / 24);
+            displayText = `${days} days`;
         } else {
             const years = currentHours / 8760;
             displayText = `${years.toFixed(1)} yrs`;
