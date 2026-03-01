@@ -703,6 +703,17 @@ body {
     }
 }
 
+.milestone-card[data-hours="73050"] .milestone-card-header.is-stuck {
+    top: 100px;
+    padding: 10px 0 8px 0;
+}
+
+@media (max-width: 640px) {
+    .milestone-card[data-hours="73050"] .milestone-card-header.is-stuck {
+        top: 100px;
+    }
+}
+
 .milestone-card:first-child {
     padding-top: 0;
 }

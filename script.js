@@ -252,9 +252,12 @@ function handleProgressBarDrag(e) {
 
 // Handle sticky headers for all milestone cards via JS
 function updateStickyHeaders() {
-    const stickyTop = window.innerWidth <= 640 ? 156 : 153;
+    const defaultStickyTop = window.innerWidth <= 640 ? 156 : 153;
 
     elements.milestoneCards.forEach(card => {
+        const stickyTop = card.dataset.hours === '73050'
+            ? (window.innerWidth <= 640 ? 133 : 130)
+            : defaultStickyTop;
         const header = card.querySelector('.milestone-card-header');
         if (!header) return;
 
