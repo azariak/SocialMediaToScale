@@ -1016,10 +1016,9 @@ function initializeThemeToggle() {
         localStorage.setItem('theme', dark ? 'dark' : 'light');
     }
 
-    // Use saved preference, otherwise follow system preference
+    // Use saved preference, otherwise default to light
     const saved = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(saved ? saved === 'dark' : systemDark);
+    applyTheme(saved === 'dark');
 
     // Visible immediately on load (user starts at top of page)
     btn.classList.add('visible');
