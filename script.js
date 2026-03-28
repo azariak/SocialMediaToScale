@@ -223,7 +223,9 @@ function updateProgressBar() {
             displayText = `${days} days`;
         } else {
             const years = currentHours / 8760;
-            displayText = `${years.toFixed(1)} yrs`;
+            const seconds = currentHours / 173611.1;
+            const secText = seconds < 10 ? seconds.toFixed(1) : Math.round(seconds);
+            displayText = `${years.toFixed(1)} yrs (~${secText}s)`;
         }
 
         elements.scaleLabel.textContent = displayText;
