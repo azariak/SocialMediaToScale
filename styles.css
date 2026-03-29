@@ -176,7 +176,7 @@ body {
 
 @media (max-width: 768px) {
     .progress-bar {
-        left: 10px;
+        left: 22px;
         margin-left: 0;
         width: 3px;
     }
@@ -1013,7 +1013,7 @@ body:not(.dark-mode) .grass-image {
     right: 20px;
     font-size: 12px;
     color: var(--text-dim);
-    z-index: 1000;
+    z-index: 100000;
 }
 
 .footer a {
@@ -1254,6 +1254,46 @@ body:not(.dark-mode) .grass-image {
     }
 
 }
+
+/* ── iPhone Frame Overlay ──────────────────────────────────── */
+#iphone-corner-fills {
+    fill: var(--bg-page);
+}
+
+#iphone-frame-border {
+    stroke: #111;
+    stroke-width: 12;
+}
+
+body.dark-mode #iphone-frame-border {
+    stroke: #222;
+}
+
+#iphone-notch-pill {
+    fill: #111;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+body.dark-mode #iphone-notch-pill {
+    fill: #1a1a1a;
+    opacity: 0.5;
+}
+
+body.header-visible #iphone-notch-pill {
+    opacity: 0;
+}
+
+#iphone-vol-up, #iphone-vol-down, #iphone-power-btn {
+    fill: #111;
+}
+
+body.dark-mode #iphone-vol-up,
+body.dark-mode #iphone-vol-down,
+body.dark-mode #iphone-power-btn {
+    fill: #222;
+}
+/* ─────────────────────────────────────────────────────────── */
 
 /* ── Theme toggle ──────────────────────────────────────────── */
 .theme-toggle {

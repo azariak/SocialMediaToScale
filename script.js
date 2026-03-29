@@ -330,6 +330,7 @@ function updateUIVisibility() {
     const isPastLastCard = lastCard && window.scrollY > lastCard.offsetTop + lastCard.offsetHeight - window.innerHeight * 0.2;
 
     elements.header.classList.toggle('ui-visible', isPassedIntro);
+    document.body.classList.toggle('header-visible', isPassedIntro);
     if (elements.statsBar) elements.statsBar.classList.toggle('ui-visible', isPassedIntro && !isPastLastCard);
     elements.progressBar.classList.toggle('ui-visible', isAtFeed);
 
@@ -1231,3 +1232,81 @@ function initializeThemeToggle() {
 
 // Start the application
 init();
+
+// ── iPhone frame overlay ─────────────────────────────────────
+function updateIphoneFrame() {
+    const svg = document.getElementById('iphone-frame-svg');
+    if (!svg) return;
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const bezel = 12;
+    const r = 44;
+    const innerR = r - bezel / 2; // radius of screen inner edge
+    const btnW = 5, btnOverlap = 1;
+
+    // Frame left edge = just past the progress bar; right edge is mirrored
+    const pb = document.querySelector('.progress-bar');
+    const pbLeft = pb ? pb.getBoundingClientRect().left : (w / 2 - 350);
+    const frameLeft = Math.max(btnW + 3, pbLeft - 18);
+    const frameRight = w - frameLeft;
+    const frameW = frameRight - frameLeft;
+
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+    // Corner fills: full viewport rect minus rounded screen cutout (evenodd)
+    const ix = frameLeft + bezel, iy = bezel, iw = frameW - bezel * 2, ih = h - bezel * 2;
+    const outerPath = `M0,0 H${w} V${h} H0 Z`;
+    const innerPath = [
+        `M${ix + innerR},${iy}`,
+        `H${ix + iw - innerR}`,
+        `A${innerR},${innerR} 0 0 1 ${ix + iw},${iy + innerR}`,
+        `V${iy + ih - innerR}`,
+        `A${innerR},${innerR} 0 0 1 ${ix + iw - innerR},${iy + ih}`,
+        `H${ix + innerR}`,
+        `A${innerR},${innerR} 0 0 1 ${ix},${iy + ih - innerR}`,
+        `V${iy + innerR}`,
+        `A${innerR},${innerR} 0 0 1 ${ix + innerR},${iy} Z`
+    ].join(' ');
+    document.getElementById('iphone-corner-fills').setAttribute('d', `${outerPath} ${innerPath}`);
+
+    // Frame border rect
+    const border = document.getElementById('iphone-frame-border');
+    border.setAttribute('x', frameLeft + bezel / 2);
+    border.setAttribute('y', bezel / 2);
+    border.setAttribute('width', frameW - bezel);
+    border.setAttribute('height', h - bezel);
+    border.setAttribute('rx', r);
+    border.setAttribute('ry', r);
+
+    // Dynamic island pill — centered within the frame
+    const notchW = 126;
+    const notch = document.getElementById('iphone-notch-pill');
+    notch.setAttribute('x', Math.round(frameLeft + (frameW - notchW) / 2));
+    notch.setAttribute('y', bezel + 8);
+    notch.setAttribute('width', notchW);
+
+    // Side buttons (protrude outward from the frame)
+    const btnStartY = Math.round(h * 0.20);
+
+    const volUp = document.getElementById('iphone-vol-up');
+    volUp.setAttribute('x', frameLeft - btnW + btnOverlap);
+    volUp.setAttribute('y', btnStartY);
+    volUp.setAttribute('width', btnW);
+    volUp.setAttribute('height', 44);
+
+    const volDown = document.getElementById('iphone-vol-down');
+    volDown.setAttribute('x', frameLeft - btnW + btnOverlap);
+    volDown.setAttribute('y', btnStartY + 56);
+    volDown.setAttribute('width', btnW);
+    volDown.setAttribute('height', 44);
+
+    const powerBtn = document.getElementById('iphone-power-btn');
+    powerBtn.setAttribute('x', frameRight - btnOverlap);
+    powerBtn.setAttribute('y', btnStartY);
+    powerBtn.setAttribute('width', btnW);
+    powerBtn.setAttribute('height', 66);
+}
+
+updateIphoneFrame();
+window.addEventListener('resize', updateIphoneFrame);
