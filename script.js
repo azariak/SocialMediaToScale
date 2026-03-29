@@ -1,5 +1,5 @@
 // Constants
-const LIVES_LOST_PER_SECOND = 0.18992844156;
+const LIVES_LOST_PER_SECOND = 0.24773268; // 6B users × 2.5 hrs/day = 15B hrs/day ÷ 700,800 ÷ 86,400
 
 // State
 const state = {
@@ -563,14 +563,14 @@ function initializeSourcesModal() {
             const sourceCodeLink = document.createElement('div');
             sourceCodeLink.className = 'source-code-link';
             sourceCodeLink.style.cssText = 'font-size: 14px; color: #888; margin-top: 8px; grid-column: 1; grid-row: 2;';
-            sourceCodeLink.innerHTML = `View the source code on <a href="https://github.com/azariak/SocialMediaToScale" target="_blank" rel="noopener noreferrer" style="color: #ff4444; text-decoration: none;">GitHub</a> · Any mistakes are accidental.`;
+            sourceCodeLink.innerHTML = `View the source code on <a href="https://github.com/azariak/SocialMediaToScale" target="_blank" rel="noopener noreferrer" style="color: #ff4444; text-decoration: none;">GitHub</a> `;
             modalHeader.appendChild(sourceCodeLink);
         }
 
         // Note
         const noteSection = document.createElement('p');
         noteSection.style.cssText = 'font-size: 14px; color: #888; margin-bottom: 16px;';
-        noteSection.innerHTML = `<strong>Note:</strong> Some of these numbers are estimates. Much of this data is unknown. It is our belief that this information is broadly true. If you spot an error, <button id="sourcesNoteReportBtn" style="background:none;border:none;padding:0;color:#888;cursor:pointer;font-size:14px;">please tell us!</button>`;
+        noteSection.innerHTML = `<strong>Note:</strong> Some of these numbers are rough estimates. Much of this data is unknown or unknowable. It is our belief that this information is broadly true. If you spot an error, <button id="sourcesNoteReportBtn" style="background:none;border:none;padding:0;color:#888;cursor:pointer;font-size:14px;text-decoration:underline;">please tell us!</button>`;
         modalBody.appendChild(noteSection);
         document.getElementById('sourcesNoteReportBtn')?.addEventListener('click', () => {
             navigator.clipboard.writeText('azaria.kelman@mail.utoronto.ca').then(() => {
@@ -579,37 +579,36 @@ function initializeSourcesModal() {
             });
         });
 
+        // Assumptions
+        const assumptionsSection = document.createElement('div');
+        assumptionsSection.className = 'source-item';
+        assumptionsSection.innerHTML = `
+            <h3>Assumptions</h3>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                All calculations on this page use the following baselines:<br><br>
+                • <strong>Average human lifespan:</strong> 80 years (700,800 hours)<br>
+                • <strong>Daily social media use:</strong> 2.5 hrs/day per person, a round figure; Statista (2025) puts the global average at ~2 hrs 21 min<br>
+                • <strong>Global social media users:</strong> 6 billion
+            </p>
+            <div class="source-link">Source: <a href="https://www.statista.com/statistics/433871/daily-social-media-usage-worldwide/" target="_blank" rel="noopener noreferrer">Statista — Daily social media usage worldwide</a></div>
+        `;
+        modalBody.appendChild(assumptionsSection);
+
         // 1. Lives Lost Calculation (stats bar)
         const statsSection = document.createElement('div');
         statsSection.className = 'source-item';
         statsSection.innerHTML = `
             <h3>Lives Lost Calculation</h3>
-            <p>The world collectively spends <strong>11.5 billion hours</strong> on social media platforms daily.</p>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Calculation for lives lost:</strong><br>
-                • 80 years in hours: 700,800<br>
-                • 11.5 billion ÷ 700,800 = 16,409.82 lives lost per day<br>
-                • Seconds in 24 hours: 86,400<br>
-                • 16,409.82 ÷ 86,400 = <strong>0.18992 lives lost per second</strong>
+                <strong>Lives lost per second:</strong><br>
+                • 6 billion users × 2.5 hrs/day = 15 billion person-hours/day<br>
+                • 15 billion ÷ 700,800 (80 yrs × 365 days × 24 hrs) = 21,404.11 lives lost per day<br>
+                • 21,404.11 ÷ 86,400 seconds = <strong>0.24773 lives lost per second</strong>
             </p>
-            <div class="source-link">Source: <a href="https://umaine.edu/undiscoveredmaine/small-business/resources/marketing-for-small-business/social-media-tools/social-media-statistics-details/" target="_blank" rel="noopener noreferrer">University of Maine — Social Media Statistics</a></div>
         `;
         modalBody.appendChild(statsSection);
 
-        // 2. Daily Social Media Use — 2.5 hrs/day (intro screen)
-        const dailySocialSection = document.createElement('div');
-        dailySocialSection.className = 'source-item';
-        dailySocialSection.innerHTML = `
-            <h3>Daily Social Media Use — 2.5 Hours</h3>
-            <p>We use <strong>2.5 hours per person per day</strong> as our baseline. Statista (2025) puts the global average at approximately 2 hours 21 minutes.</p>
-            <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Assumption:</strong> 2.5 hrs/day is used as a round, commonly cited figure throughout all derived calculations.
-            </p>
-            <div class="source-link">Source: <a href="https://www.statista.com/statistics/433871/daily-social-media-usage-worldwide/" target="_blank" rel="noopener noreferrer">Statista — Daily social media usage worldwide</a></div>
-        `;
-        modalBody.appendChild(dailySocialSection);
-
-        // 3. Card Calculations (yearly, lifetime, global 10 sec)
+        // 2. Card Calculations (yearly, lifetime, global 10 sec)
         const calcSection = document.createElement('div');
         calcSection.className = 'source-item';
         calcSection.innerHTML = `
@@ -621,20 +620,17 @@ function initializeSourcesModal() {
                 <strong>Yearly:</strong><br>
                 • 2.5 × 365 = <strong>912 hours</strong> (38 days)<br><br>
 
-                <strong>Lifetime (80 years):</strong><br>
-                • Assumes 2.5 hrs/day usage across a full 80-year lifespan<br>
+                <strong>Lifetime:</strong><br>
                 • 2.5 × 365.25 × 80 = <strong>73,050 hours</strong> (8.3 years)<br><br>
 
                 <strong>Global usage every 10 seconds:</strong><br>
-                • 6 billion social media users × 2.5 hrs/day = 15 billion person-hours/day<br>
-                • ÷ 24 hrs/day = 625,000,000 person-hours/hr<br>
-                • ÷ 60 min/hr = 10,416,667 person-hours/min<br>
-                • ÷ 6 (ten-second blocks per minute) = <strong>1,736,111 hours per 10 seconds</strong><br><br>
+                • 15 billion hrs/day ÷ 24 = 625,000,000 hrs/hr<br>
+                • ÷ 60 = 10,416,667 hrs/min<br>
+                • ÷ 6 = <strong>1,736,111 hours per 10 seconds</strong><br><br>
 
                 <strong>Lifetimes lost per year:</strong><br>
-                • 80 years × 8,760 hrs/yr = 700,800 hrs per lifetime<br>
                 • 15 billion hrs/day × 365 = 5,475,000,000,000 hrs/year<br>
-                • 5,475,000,000,000 ÷ 700,800 = <strong>7,812,500 lifetimes/year</strong><br><br>
+                • ÷ 700,800 = <strong>7,812,500 lifetimes/year</strong><br><br>
 
                 • Lifetimes per 10 seconds: 1,736,111 ÷ 700,800 ≈ <strong>2.5 lifetimes</strong>
             </p>
@@ -740,17 +736,7 @@ function initializeSourcesModal() {
         `;
         modalBody.appendChild(voyagerSection);
 
-        // 9. One Human Lifetime (fifth mini-card in massive card)
-        const lifetimeSection = document.createElement('div');
-        lifetimeSection.className = 'source-item';
-        lifetimeSection.innerHTML = `
-            <h3>One Human Lifetime — 700,800 Hours</h3>
-            <p>An 80-year human lifespan equals <strong>700,800 hours</strong>.</p>
-            <p style="font-size: 14px; color: #888; line-height: 1.8;">
-                <strong>Calculation:</strong> 80 × 365 × 24 = <strong>700,800 hours</strong>
-            </p>
-        `;
-        modalBody.appendChild(lifetimeSection);
+
 
         // 9b. Circumnavigate the Globe in ~3 Seconds (floating text at position 0.37 in massive card)
         const circumnavigateSection = document.createElement('div');
