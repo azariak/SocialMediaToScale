@@ -624,9 +624,6 @@ function initializeSourcesModal() {
                 • 15 billion hrs/day × 365 = 5,475,000,000,000 hrs/year<br>
                 • 5,475,000,000,000 ÷ 700,800 = <strong>7,812,500 lifetimes/year</strong><br><br>
 
-                <strong>Comparison markers:</strong><br>
-                • Reading all of Wikipedia: ~340,000 hours (0.49 lifetimes)<br>
-                • One human lifetime (80 years): 700,800 hours<br>
                 • Lifetimes per 10 seconds: 1,736,111 ÷ 700,800 ≈ <strong>2.5 lifetimes</strong>
             </p>
         `;
@@ -653,7 +650,7 @@ function initializeSourcesModal() {
         sistineSection.className = 'source-item';
         sistineSection.innerHTML = `
             <h3>Sistine Chapel Ceiling — 17,520 Hours</h3>
-            <p>Michelangelo painted the Sistine Chapel ceiling from <strong>1508 to 1512</strong> — a confirmed 4-year period.</p>
+            <p>Michelangelo painted the Sistine Chapel ceiling from <strong>1508 to 1512</strong>, a 4-year period.</p>
             <p style="font-size: 14px; color: #888; line-height: 1.8;">
                 <strong>Assumption:</strong> 12 hours of work per day. No historical record establishes a precise daily schedule; this is an illustrative estimate used to produce a round figure.<br><br>
                 <strong>Calculation:</strong> 4 years × 365 days × 12 hrs/day = <strong>17,520 hours</strong>
@@ -724,6 +721,52 @@ function initializeSourcesModal() {
             </p>
         `;
         modalBody.appendChild(lifetimeSection);
+
+        // 10. Life of Moses (sixth mini-card in massive card)
+        const mosesSection = document.createElement('div');
+        mosesSection.className = 'source-item';
+        mosesSection.innerHTML = `
+            <h3>Life of Moses — 1,051,920 Hours</h3>
+            <p><em>"Moses was a hundred and twenty years old when he died; his eyes were not dim, nor his natural force abated."</em> (Deuteronomy 34:7)</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Calculation:</strong><br>
+                • 120 years × 365.25 days/year = 43,830 days<br>
+                • 43,830 days × 24 hours/day = <strong>1,051,920 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://www.sefaria.org/Deuteronomy.34.7?lang=bi" target="_blank" rel="noopener noreferrer">Sefaria — Deuteronomy 34:7</a></div>
+        `;
+        modalBody.appendChild(mosesSection);
+
+        // 11. Statue of Liberty (seventh mini-card in massive card)
+        const statueSection = document.createElement('div');
+        statueSection.className = 'source-item';
+        statueSection.innerHTML = `
+            <h3>Statue of Liberty — 1,227,240 Hours</h3>
+            <p>The Statue of Liberty was dedicated on <strong>October 28, 1886</strong> — approximately <strong>140 years ago</strong> as of 2026.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Calculation:</strong> 140 × 365.25 × 24 = <strong>1,227,240 hours</strong>
+            </p>
+            <div class="source-link">Source: <a href="https://en.wikipedia.org/wiki/Statue_of_Liberty" target="_blank" rel="noopener noreferrer">Wikipedia — Statue of Liberty</a></div>
+        `;
+        modalBody.appendChild(statueSection);
+
+        // 12. 5 Billion Heartbeats (eighth mini-card in massive card)
+        const heartbeatSection = document.createElement('div');
+        heartbeatSection.className = 'source-item';
+        heartbeatSection.innerHTML = `
+            <h3>5 Billion Heartbeats — 1,314,900 Hours</h3>
+            <p>A sesquicentennial (150-year) human lifespan contains approximately <strong>5 billion heartbeats</strong>.</p>
+            <p style="font-size: 14px; color: #888; line-height: 1.8;">
+                <strong>Assumptions:</strong><br>
+                • Average resting heart rate: ~63 beats per minute (within the normal 60–100 bpm range)<br>
+                • Lifespan: 150 years<br><br>
+                <strong>Calculation:</strong><br>
+                • 150 × 365.25 × 24 = <strong>1,314,900 hours</strong><br>
+                • 1,314,900 × 60 min × 63 bpm ≈ <strong>4,970,000,000 beats</strong> ≈ 5 billion
+            </p>
+            <div class="source-link">Source: <a href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates" target="_blank" rel="noopener noreferrer">American Heart Association — Target Heart Rates</a></div>
+        `;
+        modalBody.appendChild(heartbeatSection);
     }
 
     // Open modal
