@@ -3,7 +3,7 @@
 A visualization showing global social media usage at scale, translating abstract hours into human-sized comparisons.
 
 Designed by Azaria Kelman and Isaac Mansell in 2026.
-Built with help from agentic programming tools.
+Built with assistance from agentic programming tools.
 
 ---
 

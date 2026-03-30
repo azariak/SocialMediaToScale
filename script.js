@@ -806,6 +806,16 @@ function initializeSourcesModal() {
             <div class="source-link">Source: <a href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates" target="_blank" rel="noopener noreferrer">American Heart Association — Target Heart Rates</a></div>
         `;
         modalBody.appendChild(heartbeatSection);
+
+        // 13. Brainrot video
+        const videoSection = document.createElement('div');
+        videoSection.className = 'source-item';
+        videoSection.innerHTML = `
+            <h3>Brainrot Video</h3>
+            <p>The subway surfers clip was generated using Easy Brainrot.</p>
+            <div class="source-link">Source: <a href="https://easybrainrot.com/subway-surfers-video-generator" target="_blank" rel="noopener noreferrer">easybrainrot.com — Subway Surfers Video Generator</a></div>
+        `;
+        modalBody.appendChild(videoSection);
     }
 
     // Open modal
