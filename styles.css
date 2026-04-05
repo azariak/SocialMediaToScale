@@ -718,6 +718,12 @@ body {
     }
 }
 
+@media (max-width: 640px) {
+    .milestone-card[data-hours="1736111"] .milestone-card-header.is-stuck {
+        top: 100px;
+    }
+}
+
 .milestone-card:first-child {
     padding-top: 0;
 }
